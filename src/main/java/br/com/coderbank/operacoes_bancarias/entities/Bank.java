@@ -1,6 +1,7 @@
 package br.com.coderbank.operacoes_bancarias.entities;
 
-import org.thales.model.employees.Manager;
+
+import org.apache.catalina.Manager;
 
 import java.util.Collections;
 import java.util.HashMap;

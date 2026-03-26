@@ -2,10 +2,11 @@ package br.com.coderbank.operacoes_bancarias.services.contas;
 
 import br.com.coderbank.operacoes_bancarias.entities.Transaction;
 import br.com.coderbank.operacoes_bancarias.entities.contas.Account;
+import br.com.coderbank.operacoes_bancarias.entities.holders.CorporateHolder;
+import br.com.coderbank.operacoes_bancarias.entities.holders.Holder;
+import br.com.coderbank.operacoes_bancarias.entities.holders.IndividualHolder;
 import br.com.coderbank.operacoes_bancarias.enums.OperationType;
-import br.com.coderbank.operacoes_bancarias.exceptions.AccountNotFoundException;
-import br.com.coderbank.operacoes_bancarias.exceptions.InsufficientBalanceException;
-import br.com.coderbank.operacoes_bancarias.exceptions.InvalidAmountException;
+import br.com.coderbank.operacoes_bancarias.exceptions.*;
 import br.com.coderbank.operacoes_bancarias.repositories.contas.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,11 @@ import java.text.DecimalFormatSymbols;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -28,7 +32,6 @@ public class AccountService {
     private AccountRepository accountRepository;
 
 
-
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter
             .ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.SHORT)
             .withLocale(Locale.US);
@@ -36,30 +39,23 @@ public class AccountService {
     private static final DecimalFormat US_FORMATTER = new DecimalFormat("¤#,##0.00",
             new DecimalFormatSymbols(Locale.US));
 
-    public void addTransactions(Transaction transaction) {
-        transactions.add(transaction);
-    }
 
-    public void payment(BigDecimal amount){
-        amountValidation(amount);
-        balanceValidation(amount);
-        this.balance = this.balance.subtract(amount);
-
-    }
 
     public void withdraw(UUID id, BigDecimal amount){
         Account account = accountRepository.findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Account Not found"));
         amountValidation(amount);
         balanceValidation(id,amount);
-        account.getBalance() = account.getBalance().subtract(amount);
-        transactions.add(new Transaction(OperationType.WITHDRAW, amount));
+        account.debit(amount);
+        account.addTransactions(new Transaction(OperationType.WITHDRAW, amount));
     }
 
-    public void deposit(BigDecimal amount){
+    public void deposit(UUID id, BigDecimal amount){
         amountValidation(amount);
-        this.balance = this.balance.add(amount);
-        transactions.add(new Transaction(OperationType.DEPOSIT, amount));
+        Account account = accountRepository.findById(id)
+                .orElseThrow(() -> new AccountNotFoundException("Account Not found"));
+        account.credit(amount);
+        account.addTransactions(new Transaction(OperationType.DEPOSIT, amount));
     }
 
     public void transference(Account destinationAccount, BigDecimal amount){
@@ -130,6 +126,89 @@ public class AccountService {
             throw new InsufficientBalanceException("Unauthorized operation! Withdraw must not be more than balance");
         }
     }
+
+    public Account openAccount(Account account){
+
+        if (doesAccountExist(account)){
+            throw new DuplicateAccountException("Account number already exists");
+        }
+        accounts.put(account.getAccountNumber(), account);
+        return account;
+    }
+
+    public Account findAccount(String accountNumber){
+        Account account = accounts.get(accountNumber);
+        if (account == null){
+            throw new AccountNotFoundException("Account not found");
+        }
+        return account;
+    }
+
+    public void closeAccount(String accountNumber){
+        Account account = findAccount(accountNumber);
+        if (account.getBalance().compareTo(BigDecimal.ZERO) > 0){
+            throw new ClosingAccountException("Cannot close account with balance bigger than 0");
+        }
+        accounts.remove(accountNumber);
+    }
+
+    private boolean doesAccountExist(Account account) {
+        return accounts.containsKey(account.getAccountNumber());
+    }
+
+    public String showAccountDetails (String accountNumber){
+        Account account = accounts.get(accountNumber);
+        if (account == null){
+            throw new AccountNotFoundException("Account not found");
+        }
+        return  String.format(
+                "Account number %s is located at agency %s.%n" +
+                        "The holder is %s, with updated balance $ %.2f",accountNumber, getAgencyNumber(), account.getHolder().getName(), account.getBalance()
+
+        );
+    }
+
+    public List<Account> sortByBalance(){
+        return accounts
+                .values()
+                .stream()
+                .sorted((a1, a2) -> a1.getBalance().compareTo(a2.getBalance()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Account> sortByName(){
+        return accounts
+                .values()
+                .stream()
+                .sorted(Comparator.comparing(account -> account.getHolder().getName()))
+                .collect(Collectors.toList());
+    }
+
+    public void showAccountsByBalance(){
+        List<Account> accountsByBalance = sortByBalance();
+        for (Account account : accountsByBalance) {
+            Holder holder = account.getHolder();
+            formatAccountInfo(account, holder);
+        }
+    }
+
+    public void showAccountsByNameAsc() {
+        List<Account> accountsByName = sortByName();
+        for (Account account : accountsByName) {
+            Holder holder = account.getHolder();
+            formatAccountInfo(account, holder);
+        }
+
+    }
+
+    private static void formatAccountInfo(Account account, Holder holder) {
+        if (holder instanceof IndividualHolder individualHolder) {
+            System.out.printf("Account number: %s%n Holder: %s, ID number: %s, with Balance %s%n", account.getAccountNumber(), individualHolder.getName(), individualHolder.getCpf() , account.getBalance());
+        } else if (holder instanceof CorporateHolder corporateHolder) {
+            System.out.printf("Account number: %s%n Holder: %s, ID number: %s, with Balance %s%n", account.getAccountNumber(), corporateHolder.getName(), corporateHolder.getCnpj() , account.getBalance());
+        }
+    }
+
 
 
 }
