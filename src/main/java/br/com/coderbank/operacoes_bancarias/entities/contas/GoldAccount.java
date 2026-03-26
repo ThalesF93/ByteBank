@@ -2,6 +2,7 @@ package br.com.coderbank.operacoes_bancarias.entities.contas;
 
 
 
+import br.com.coderbank.operacoes_bancarias.entities.holders.Holder;
 import br.com.coderbank.operacoes_bancarias.enums.FeeType;
 import br.com.coderbank.operacoes_bancarias.enums.OperationType;
 import br.com.coderbank.operacoes_bancarias.exceptions.InsufficientBalanceException;

@@ -1,6 +1,8 @@
 package br.com.coderbank.operacoes_bancarias.entities;
 
-import org.thales.enums.OperationType;
+
+
+import br.com.coderbank.operacoes_bancarias.enums.OperationType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

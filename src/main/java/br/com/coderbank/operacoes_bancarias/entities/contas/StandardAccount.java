@@ -1,11 +1,13 @@
 package br.com.coderbank.operacoes_bancarias.entities.contas;
 
-import org.thales.enums.FeeType;
-import org.thales.enums.OperationType;
-import org.thales.model.Transaction;
-import org.thales.model.holders.Holder;
+
+import br.com.coderbank.operacoes_bancarias.entities.holders.Holder;
+import br.com.coderbank.operacoes_bancarias.enums.FeeType;
+import br.com.coderbank.operacoes_bancarias.enums.OperationType;
 
 import java.math.BigDecimal;
+
+import static br.com.coderbank.operacoes_bancarias.services.contas.AccountService.amountValidation;
 
 public class StandardAccount extends Account  {
 

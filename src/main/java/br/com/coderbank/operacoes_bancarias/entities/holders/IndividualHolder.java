@@ -1,7 +1,9 @@
 package br.com.coderbank.operacoes_bancarias.entities.holders;
 
-import org.thales.enums.MaritalStatus;
-import org.thales.exceptions.InvalidIdentificationException;
+
+
+import br.com.coderbank.operacoes_bancarias.enums.MaritalStatus;
+import br.com.coderbank.operacoes_bancarias.exceptions.InvalidIdentificationException;
 
 import java.util.Objects;
 

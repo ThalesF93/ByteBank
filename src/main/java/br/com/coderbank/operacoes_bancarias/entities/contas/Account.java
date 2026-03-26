@@ -2,6 +2,7 @@ package br.com.coderbank.operacoes_bancarias.entities.contas;
 
 
 import br.com.coderbank.operacoes_bancarias.entities.Transaction;
+
 import br.com.coderbank.operacoes_bancarias.entities.holders.Holder;
 import jakarta.persistence.*;
 
@@ -13,6 +14,7 @@ import java.util.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Account {
 
+    private static final SecureRandom secureRandom = new SecureRandom();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +24,7 @@ public abstract class Account {
     private Holder holder;
 
     @Column(name = "numeroConta")
-    private final String accountNumber;
+    private String accountNumber;
 
     @Column(name = "saldo")
     protected BigDecimal balance = BigDecimal.ZERO;
@@ -30,13 +32,6 @@ public abstract class Account {
     @Column(name = "transações")
     private final List<Transaction> transactions = new ArrayList<>();
 
-    private static final SecureRandom secureRandom = new SecureRandom();
-
-    public Account(Holder holder) {
-        this.holder = Objects.requireNonNull(holder, "Holder Cannot be null");
-        this.accountNumber = generateAccountNumber();
-
-    }
     public Holder getHolder() {
         return holder;
     }
@@ -53,9 +48,21 @@ public abstract class Account {
         return Collections.unmodifiableList(transactions);
     }
 
+    public void addTransactions(Transaction transaction) {
+        transactions.add(transaction);
+    }
+
     private String generateAccountNumber(){
         int number = secureRandom.nextInt(90_000_000) + 10_000_000;
         return String.valueOf(number);
+    }
+
+    public void debit(BigDecimal amount) {
+        this.balance = this.balance.subtract(amount);
+    }
+
+    public void credit(BigDecimal amount) {
+        this.balance = this.balance.add(amount);
     }
 
     @Override
