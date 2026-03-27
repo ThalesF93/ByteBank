@@ -1,75 +1,71 @@
 package br.com.coderbank.operacoes_bancarias.entities;
 
 
-
 import br.com.coderbank.operacoes_bancarias.enums.OperationType;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
-
+@Entity
+@Getter
+@Setter
+@Table(name = "transactions")
+@RequiredArgsConstructor
 public class Transaction {
-        private OperationType type; // DEPOSIT, WITHDRAW, TRANSFER
-        private BigDecimal amount;
-        private LocalDateTime dateTime;
-        private String description;
 
-        public Transaction(OperationType type, BigDecimal amount, String description, LocalDateTime date) {
-            this.type = type;
-            this.amount = amount;
-            this.description = description;
-            this.dateTime = date;
-        }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-        public Transaction(OperationType type, BigDecimal amount, String description) {
-            this.type = type;
-            this.amount = amount;
-            this.description = description;
-            this.dateTime = LocalDateTime.now();
-        }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accounts_id", nullable = false)
+    private Account account;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private OperationType type;
+
+    @Column(nullable = false)
+    private BigDecimal amount;
+
+    @CreationTimestamp
+    @Column
+    private LocalDateTime dateTime;
 
 
-        public Transaction(OperationType type, BigDecimal amount) {
-            this.type = type;
-            this.amount = amount;
-            this.dateTime = LocalDateTime.now();
-        }
+    @Column
+    private String description;
 
-        public OperationType getType() {
-            return type;
-        }
 
-        public void setType(OperationType type) {
-            this.type = type;
-        }
+    public Transaction(OperationType type, BigDecimal amount, String description) {
+        this.type = type;
+        this.amount = amount;
+        this.description = description;
+    }
 
-        public BigDecimal getAmount() {
-            return amount;
-        }
 
-        public LocalDateTime getDateTime() {
-            return dateTime;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
+    public Transaction(OperationType type, BigDecimal amount) {
+        this.type = type;
+        this.amount = amount;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
-        return type == that.type && Objects.equals(amount, that.amount) && Objects.equals(dateTime, that.dateTime) && Objects.equals(description, that.description);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, amount, dateTime, description);
+        return Objects.hashCode(id);
     }
 
     @Override
@@ -77,7 +73,7 @@ public class Transaction {
         return "Transaction: " + type +
                 ", Amount: $ " + amount +
                 ", Date: " + dateTime +
-                 '\n';
+                '\n';
     }
 }
 
