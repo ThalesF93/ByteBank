@@ -6,19 +6,13 @@ import br.com.coderbank.operacoes_bancarias.enums.OperationType;
 import br.com.coderbank.operacoes_bancarias.exceptions.AccountNotFoundException;
 import br.com.coderbank.operacoes_bancarias.exceptions.InsufficientBalanceException;
 import br.com.coderbank.operacoes_bancarias.exceptions.InvalidAmountException;
+import br.com.coderbank.operacoes_bancarias.exceptions.SameAccountException;
 import br.com.coderbank.operacoes_bancarias.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.*;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Locale;
 import java.util.UUID;
 
 @Service
@@ -58,6 +52,10 @@ public class TransactionService {
     public void transference(UUID originAccountId, UUID destinationAccountId, BigDecimal amount){
         Account originAccount = getAccount(originAccountId, "Origin Account not Found");
         Account destinationAccount = getAccount(destinationAccountId, "Destination Account not Found");
+
+        if (originAccount == destinationAccount){
+            throw new SameAccountException("The accounts must be different");
+        }
 
         amountValidation(amount);
         balanceValidation(originAccount, amount);

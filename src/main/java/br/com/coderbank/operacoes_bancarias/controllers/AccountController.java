@@ -2,14 +2,15 @@ package br.com.coderbank.operacoes_bancarias.controllers;
 
 import br.com.coderbank.operacoes_bancarias.dtos.contas.request.AccountRequestDTO;
 import br.com.coderbank.operacoes_bancarias.dtos.contas.response.AccountResponseDTO;
+import br.com.coderbank.operacoes_bancarias.dtos.transacoes.responses.TransactionResponseDTO;
 import br.com.coderbank.operacoes_bancarias.services.contas.AccountService;
-import br.com.coderbank.operacoes_bancarias.services.transacoes.TransactionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -18,9 +19,6 @@ public class AccountController {
 
     @Autowired
     private AccountService accountService;
-
-    @Autowired
-    private TransactionService transactionService;
 
 
     @PostMapping
@@ -39,9 +37,9 @@ public class AccountController {
     }
 
     @GetMapping("/{id}/transactions")
-    public ResponseEntity<String> getStatements(@PathVariable UUID id){
+    public ResponseEntity<List<TransactionResponseDTO>> getStatements(@PathVariable UUID id){
 
-      accountService.generateBankStatement(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Statement generated successfully");
+      var transactions = accountService.generateBankStatement(id);
+        return ResponseEntity.status(HttpStatus.OK).body(transactions);
     }
 }

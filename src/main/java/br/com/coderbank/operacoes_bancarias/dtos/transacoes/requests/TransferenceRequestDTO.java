@@ -8,10 +8,10 @@ import java.util.UUID;
 
 public record TransferenceRequestDTO(
 
-        @NotBlank
+
         UUID originAccountId,
 
-        @NotBlank
+
         UUID destinationAccountId,
 
         @Positive
