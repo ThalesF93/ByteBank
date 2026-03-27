@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public record WithdrawRequestDTO(
 
-        @NotBlank
+
         UUID accountId,
 
         @Positive

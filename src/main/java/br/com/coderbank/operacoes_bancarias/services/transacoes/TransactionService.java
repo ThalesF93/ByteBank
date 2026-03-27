@@ -27,12 +27,7 @@ public class TransactionService {
     @Autowired
     private AccountRepository accountRepository;
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter
-            .ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.SHORT)
-            .withLocale(Locale.US);
 
-    private static final DecimalFormat US_FORMATTER = new DecimalFormat("¤#,##0.00",
-            new DecimalFormatSymbols(Locale.US));
 
     @Transactional
     public void withdraw(UUID id, BigDecimal amount){
@@ -80,50 +75,6 @@ public class TransactionService {
 
     private Account getAccount(UUID accountId, String messageError) {
         return accountRepository.findById(accountId).orElseThrow(() -> new AccountNotFoundException(messageError));
-    }
-
-    public void generateBankStatement(UUID id)  {
-        Account account = getAccount(id, "Account not found");
-
-        File directory = new File("statements");
-
-        if (!directory.exists()) {
-            directory.mkdirs();
-        }
-        File statements = new File(directory, account.getAccountNumber() + ".txt");
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(statements))){
-
-            writer.write("- Account Statement \n");
-            writer.write("-----------------------------------------------------\n");
-            writer.write("- Statement's Date: " + LocalDateTime.now().format(DATE_TIME_FORMATTER) + "\n");
-            writer.write("- Account number " + account.getAccountNumber() + "\n");
-            writer.write("- Holder's ID:  " + account.getCustomerId() + "\n");
-            writer.write("- Transactions: " + "\n");
-            int transactionNumber = 1;
-            for (Transaction transaction : account.getTransactions()){
-                writer.write( String.format("Date: %s%n #%d -  Transaction: %s, value: %s%n%n", transaction.getDateTime().format(DATE_TIME_FORMATTER), transactionNumber++, transaction.getType(), US_FORMATTER.format(transaction.getAmount()) ));
-            }
-            writer.write("- Updated Balance: " + US_FORMATTER.format(account.getBalance())+ "\n");
-        }  catch (IOException e) {
-            throw new RuntimeException("Failed to generate bank statement for account "
-                    + account.getAccountNumber(), e);
-        }
-        showStatement(account);
-    }
-
-    private void showStatement(Account account){
-
-        File file = new File("statements/" + account.getAccountNumber() + ".txt");
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Error ", e);
-        }
     }
 
     protected static void amountValidation(BigDecimal amount) {

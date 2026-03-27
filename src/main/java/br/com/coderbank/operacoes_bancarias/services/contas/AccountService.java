@@ -3,6 +3,7 @@ package br.com.coderbank.operacoes_bancarias.services.contas;
 import br.com.coderbank.operacoes_bancarias.dtos.contas.request.AccountRequestDTO;
 import br.com.coderbank.operacoes_bancarias.dtos.contas.response.AccountResponseDTO;
 import br.com.coderbank.operacoes_bancarias.entities.Account;
+import br.com.coderbank.operacoes_bancarias.entities.Transaction;
 import br.com.coderbank.operacoes_bancarias.exceptions.AccountNotFoundException;
 import br.com.coderbank.operacoes_bancarias.exceptions.ClosingAccountException;
 import br.com.coderbank.operacoes_bancarias.exceptions.CustomerNotFoundException;
@@ -11,14 +12,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.*;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 
 @Service
 public class AccountService {
+
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter
+            .ofLocalizedDateTime(FormatStyle.FULL, FormatStyle.SHORT)
+            .withLocale(Locale.US);
+
+    private static final DecimalFormat US_FORMATTER = new DecimalFormat("¤#,##0.00",
+            new DecimalFormatSymbols(Locale.US));
 
     @Autowired
     private AccountRepository accountRepository;
@@ -64,4 +79,48 @@ public class AccountService {
                 .collect(Collectors.toList());
     }
 
+    public void generateBankStatement(UUID id)  {
+        Account account = accountRepository.findById(id)
+                .orElseThrow(()-> new AccountNotFoundException("Account not found"));
+
+        File directory = new File("statements");
+
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+        File statements = new File(directory, account.getAccountNumber() + ".txt");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(statements))){
+
+            writer.write("- Account Statement \n");
+            writer.write("-----------------------------------------------------\n");
+            writer.write("- Statement's Date: " + LocalDateTime.now().format(DATE_TIME_FORMATTER) + "\n");
+            writer.write("- Account number " + account.getAccountNumber() + "\n");
+            writer.write("- Holder's ID:  " + account.getCustomerId() + "\n");
+            writer.write("- Transactions: " + "\n");
+            int transactionNumber = 1;
+            for (Transaction transaction : account.getTransactions()){
+                writer.write( String.format("Date: %s%n #%d -  Transaction: %s, value: %s%n%n", transaction.getDateTime().format(DATE_TIME_FORMATTER), transactionNumber++, transaction.getType(), US_FORMATTER.format(transaction.getAmount()) ));
+            }
+            writer.write("- Updated Balance: " + US_FORMATTER.format(account.getBalance())+ "\n");
+        }  catch (IOException e) {
+            throw new RuntimeException("Failed to generate bank statement for account "
+                    + account.getAccountNumber(), e);
+        }
+        showStatement(account);
+    }
+
+    private void showStatement(Account account){
+
+        File file = new File("statements/" + account.getAccountNumber() + ".txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error ", e);
+        }
+    }
 }
