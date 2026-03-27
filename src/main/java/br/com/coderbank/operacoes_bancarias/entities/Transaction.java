@@ -25,11 +25,11 @@ public class Transaction {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "accounts_id", nullable = false)
+    @JoinColumn(name = "accounts_id")
     private Account account;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column
     private OperationType type;
 
     @Column(nullable = false)
