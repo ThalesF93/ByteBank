@@ -38,7 +38,7 @@ public class Account {
     @Column
     protected BigDecimal balance = BigDecimal.ZERO;
 
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private final List<Transaction> transactions = new ArrayList<>();
 
     @Column
@@ -66,6 +66,7 @@ public class Account {
     }
 
     public void addTransactions(Transaction transaction) {
+        transaction.setAccount(this);
         transactions.add(transaction);
     }
 

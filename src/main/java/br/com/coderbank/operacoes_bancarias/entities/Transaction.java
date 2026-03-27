@@ -25,7 +25,7 @@ public class Transaction {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "accounts_id")
+    @JoinColumn(name = "account_id")
     private Account account;
 
     @Enumerated(EnumType.STRING)

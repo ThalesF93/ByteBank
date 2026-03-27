@@ -3,7 +3,6 @@ package br.com.coderbank.operacoes_bancarias.controllers;
 import br.com.coderbank.operacoes_bancarias.dtos.transacoes.requests.DepositRequestDTO;
 import br.com.coderbank.operacoes_bancarias.dtos.transacoes.requests.TransferenceRequestDTO;
 import br.com.coderbank.operacoes_bancarias.dtos.transacoes.requests.WithdrawRequestDTO;
-import br.com.coderbank.operacoes_bancarias.dtos.transacoes.responses.AmountResponse;
 import br.com.coderbank.operacoes_bancarias.services.transacoes.TransactionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class TransactionController {
 
     @PatchMapping("/withdraw")
     public ResponseEntity<String> withdraw(@Valid @RequestBody WithdrawRequestDTO withdrawRequestDTO){
-         transactionService.deposit(withdrawRequestDTO.accountId(), withdrawRequestDTO.amount());
+         transactionService.withdraw(withdrawRequestDTO.accountId(), withdrawRequestDTO.amount());
          return ResponseEntity.status(HttpStatus.OK).body("Operation successfully done");
     }
 
