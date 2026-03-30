@@ -1,7 +1,0 @@
-- Account Statement 
------------------------------------------------------
-- Statement's Date: Friday, March 27, 2026, 4:01 PM
-- Account number 42653953
-- Holder's ID:  814183df-5cd0-4b06-9d66-fda8c25a2963
-- Transactions: 
-- Updated Balance: $500.00
