@@ -6,23 +6,23 @@ import org.hibernate.validator.constraints.br.CPF;
 
 public record CustomerRequestDTO(
 
-        @NotBlank(message = "O campo nome é obrigatório")
-        @Size(min = 3, message = "A quantidade mínima é de 3 caracteres")
-        String nome,
+        @NotBlank(message = "The name field is required.")
+        @Size(min = 3, message = "The minimum quantity is 3 characters.")
+        String name,
 
         @CPF
-        @NotBlank(message = "O campo CPF é obrigatório")
+        @NotBlank(message = "The CPF field is required.")
         String cpf,
 
         @Email
-        @NotBlank(message = "O campo email é obrigatório")
+        @NotBlank(message = "The EMAIL field is required.")
         String email,
 
-        @NotBlank(message = "O campo Endereço é obrigatório")
-        String endereco,
+        @NotBlank(message = "The Adress field is required.")
+        String address,
 
-        @Min(message = "Idade mínima é de 18 anos", value = 18)
-        @Max(message = "Idade máxima é de 120 anos", value = 120)
-        Integer idade
+        @Min(message = "Minimum age is 18 years.", value = 18)
+        @Max(message = "Maximum age is 120 years.", value = 120)
+        Integer age
 ) {
 }
