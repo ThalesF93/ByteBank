@@ -37,7 +37,7 @@ public class ControllerExceptionHandler {
             exception.getMessage()
         );
         
-        problemDetail.setTitle("Cliente já existente");
+        problemDetail.setTitle("Customer já existente");
         problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/cliente-duplicado"));
         
         return problemDetail;

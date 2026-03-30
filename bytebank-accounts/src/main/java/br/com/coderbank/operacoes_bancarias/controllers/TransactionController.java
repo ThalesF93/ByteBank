@@ -24,10 +24,10 @@ public class TransactionController {
 
         log.info("Request received. endpoint=PATCH /deposit value={}",depositRequestDTO.amount());
 
-         transactionService.deposit(depositRequestDTO.accountId(), depositRequestDTO.amount());
+        transactionService.deposit(depositRequestDTO.accountId(), depositRequestDTO.amount());
 
         log.info("Deposit completed. accountID={}", depositRequestDTO.accountId());
-         return ResponseEntity.status(HttpStatus.OK).body("Operation successfully done");
+        return ResponseEntity.status(HttpStatus.OK).body("Operation successfully done");
     }
 
     @PatchMapping("/withdraw")
@@ -35,10 +35,10 @@ public class TransactionController {
 
         log.info("Request received. endpoint=PATCH /withdraw value={}",withdrawRequestDTO.amount());
 
-         transactionService.withdraw(withdrawRequestDTO.accountId(), withdrawRequestDTO.amount());
+        transactionService.withdraw(withdrawRequestDTO.accountId(), withdrawRequestDTO.amount());
 
         log.info("Withdraw completed. accountID={}", withdrawRequestDTO.accountId());
-         return ResponseEntity.status(HttpStatus.OK).body("Operation successfully done");
+        return ResponseEntity.status(HttpStatus.OK).body("Operation successfully done");
     }
 
     @PostMapping

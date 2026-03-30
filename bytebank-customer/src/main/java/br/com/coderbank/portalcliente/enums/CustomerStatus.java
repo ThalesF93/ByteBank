@@ -1,6 +1,6 @@
 package br.com.coderbank.portalcliente.enums;
 
-public enum costumerStatus {
+public enum CustomerStatus {
 
-    ATIVO, INATIVO
+    ACTIVE, INACTIVE
 }

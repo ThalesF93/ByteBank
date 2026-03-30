@@ -4,7 +4,7 @@ import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 
-public record ClienteRequestDTO(
+public record CustomerRequestDTO(
 
         @NotBlank(message = "O campo nome é obrigatório")
         @Size(min = 3, message = "A quantidade mínima é de 3 caracteres")

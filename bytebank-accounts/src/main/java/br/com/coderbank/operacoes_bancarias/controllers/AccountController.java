@@ -34,15 +34,15 @@ public class AccountController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<AccountResponseDTO> showAccount(@PathVariable UUID id){
-           var account =  accountService.findAccountById(id);
+        var account =  accountService.findAccountById(id);
 
-           return ResponseEntity.status(HttpStatus.OK).body(account);
+        return ResponseEntity.status(HttpStatus.OK).body(account);
     }
 
     @GetMapping("/{id}/transactions")
     public ResponseEntity<List<TransactionResponseDTO>> getStatements(@PathVariable UUID id){
 
-      var transactions = accountService.generateBankStatement(id);
+        var transactions = accountService.generateBankStatement(id);
         return ResponseEntity.status(HttpStatus.OK).body(transactions);
     }
 }

@@ -1,7 +1,7 @@
 package br.com.coderbank.portalcliente.controllers;
 
-import br.com.coderbank.portalcliente.entities.Cliente;
-import br.com.coderbank.portalcliente.repositories.ClienteRepository;
+import br.com.coderbank.portalcliente.entities.Customer;
+import br.com.coderbank.portalcliente.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,21 +15,21 @@ import java.util.UUID;
 public class ClienteControllerV1 {
 
     @Autowired
-    private ClienteRepository repository;
+    private CustomerRepository repository;
 
     @PostMapping
-    public ResponseEntity<Cliente> salvar(@RequestBody Cliente cliente){
-        var clienteResponde = repository.save(cliente);
+    public ResponseEntity<Customer> salvar(@RequestBody Customer customer){
+        var clienteResponde = repository.save(customer);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteResponde);
     }
 
     @GetMapping
-    public ResponseEntity<List<Cliente>> obterTodos(){
+    public ResponseEntity<List<Customer>> obterTodos(){
         return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscarPorId(@PathVariable UUID id){
+    public ResponseEntity<Customer> buscarPorId(@PathVariable UUID id){
 
         var cliente = repository.findById(id).orElse(null);
 
@@ -44,13 +44,13 @@ public class ClienteControllerV1 {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualizar(@PathVariable(value = "id") UUID id,
-                                             @RequestBody Cliente cliente){
+    public ResponseEntity<Customer> atualizar(@PathVariable(value = "id") UUID id,
+                                              @RequestBody Customer customer){
 
         var clienteOptional = repository.findById(id);
 
         return clienteOptional
-                .map(c -> ResponseEntity.ok(repository.save(cliente))).orElseGet(()-> ResponseEntity.notFound().build());
+                .map(c -> ResponseEntity.ok(repository.save(customer))).orElseGet(()-> ResponseEntity.notFound().build());
     }
 
 

@@ -1,54 +1,57 @@
 package br.com.coderbank.portalcliente.controllers;
 
-import br.com.coderbank.portalcliente.dtos.requests.CheckingPendingAccountsDTO;
-import br.com.coderbank.portalcliente.dtos.requests.ClienteRequestDTO;
-import br.com.coderbank.portalcliente.dtos.responses.ClienteResponseDTO;
-import br.com.coderbank.portalcliente.dtos.responses.ClienteResumoResponseDTO;
+import br.com.coderbank.portalcliente.dtos.requests.CustomerRequestDTO;
+import br.com.coderbank.portalcliente.dtos.responses.CustomerResponseDTO;
+import br.com.coderbank.portalcliente.dtos.responses.CustomerShortResponseDTO;
 import br.com.coderbank.portalcliente.dtos.responses.PagedResponse;
 import br.com.coderbank.portalcliente.dtos.responses.PendingAccountStatusResponse;
-import br.com.coderbank.portalcliente.entities.Cliente;
-import br.com.coderbank.portalcliente.services.ClienteService;
+import br.com.coderbank.portalcliente.services.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v2/clientes")
 @RequiredArgsConstructor
+@Slf4j
 public class ClienteControllerV2 {
 
-    private final ClienteService service;
+    private final CustomerService service;
 
     @PostMapping
-    public ResponseEntity<ClienteResponseDTO> salvar(@Valid @RequestBody ClienteRequestDTO clienteRequestDTO){
+    public ResponseEntity<CustomerResponseDTO> save(@Valid @RequestBody CustomerRequestDTO customerRequestDTO){
 
-        var cliente = service.salvar(clienteRequestDTO);
+        log.info("Request received. endpoint=POST /clients name={}", customerRequestDTO.name());
+
+        var costumer = service.saveCostumer(customerRequestDTO);
+
+        log.info("Request completed. clientId={} status={}", costumer.id(), costumer.customerStatus());
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(cliente);
+                .body(costumer);
     }
 
     @GetMapping("/status/{id}")
     public ResponseEntity<PendingAccountStatusResponse> checkPendingAccount(@PathVariable UUID id){
+        log.info("Checking account status. clientId={}", id);
         var pending = service.checkAccountStatus(id);
         return ResponseEntity.ok(pending);
     }
 
     @GetMapping
-    public PagedResponse<ClienteResumoResponseDTO> obterClientes(@RequestParam(defaultValue = "0") int pagina,
-                                                                 @RequestParam(defaultValue = "10") int tamanho){
-         var pageable = PageRequest.of(pagina, tamanho);
+    public PagedResponse<CustomerShortResponseDTO> getCostumers(@RequestParam(defaultValue = "0") int page,
+                                                                @RequestParam(defaultValue = "10") int size){
+        log.info("Obtaining costumers in database");
+        var pageable = PageRequest.of(page, size);
 
-         var paginaCliente = service.obterClientes(pageable);
+        var costumerPage = service.obterClientes(pageable);
 
-         return new PagedResponse<>(paginaCliente);
+        return new PagedResponse<>(costumerPage);
     }
-    }
-
+}
 
