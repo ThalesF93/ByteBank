@@ -6,9 +6,9 @@ import br.com.coderbank.operacoes_bancarias.dtos.transacoes.responses.Transactio
 import br.com.coderbank.operacoes_bancarias.entities.Account;
 import br.com.coderbank.operacoes_bancarias.exceptions.AccountNotFoundException;
 import br.com.coderbank.operacoes_bancarias.exceptions.ClosingAccountException;
-import br.com.coderbank.operacoes_bancarias.exceptions.CustomerNotFoundException;
 import br.com.coderbank.operacoes_bancarias.repositories.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class AccountService {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter
@@ -33,22 +35,17 @@ public class AccountService {
     private static final DecimalFormat US_FORMATTER = new DecimalFormat("¤#,##0.00",
             new DecimalFormatSymbols(Locale.US));
 
-    @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     @Transactional
     public AccountResponseDTO openAccount(AccountRequestDTO accountRequestDTO){
-        // Coloquei uma validação de null, pois ainda não existe a verificação de ID junto ao repositório de clientes.
 
-        if (accountRequestDTO.customerId() == null){
-            throw new CustomerNotFoundException("Customer id not found");
-        }
         Account account = new Account();
 
         account.setCustomerId(accountRequestDTO.customerId());
 
         accountRepository.save(account);
-
+        log.info("Account opened. accountId={}", account.getId());
         return new AccountResponseDTO(account.getId(), account.getCustomerId(), account.getAgency(), account.getBalance());
     }
 
@@ -60,6 +57,7 @@ public class AccountService {
 
     }
 
+    @Transactional
     public void closeAccount(UUID id){
         Account account = accountRepository.findById(id)
                 .orElseThrow(()-> new AccountNotFoundException("Account not found"));
