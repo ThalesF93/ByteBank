@@ -1,6 +1,6 @@
 package br.com.coderbank.portalcliente.dtos.responses;
 
-import br.com.coderbank.portalcliente.entities.enums.Status;
+import br.com.coderbank.portalcliente.enums.costumerStatus;
 
 import java.util.UUID;
 
@@ -10,7 +10,7 @@ public record ClienteResumoResponseDTO(
 
         String nome,
 
-        Status status
+        costumerStatus costumerStatus
 
 
 ) {

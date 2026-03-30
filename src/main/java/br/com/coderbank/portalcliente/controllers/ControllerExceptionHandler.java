@@ -1,6 +1,7 @@
 package br.com.coderbank.portalcliente.controllers;
 
 import br.com.coderbank.portalcliente.exceptions.ClienteJaExistenteException;
+import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.validation.FieldError;
@@ -15,6 +16,18 @@ import java.util.Map;
 @RestControllerAdvice
 
 public class ControllerExceptionHandler {
+
+    @ExceptionHandler(FeignException.class)
+    public ProblemDetail handleFeignException(final FeignException exception){
+        HttpStatus status;
+        try {
+            status = HttpStatus.valueOf(exception.status());
+        } catch (IllegalArgumentException e) {
+            status = HttpStatus.SERVICE_UNAVAILABLE;
+        }
+
+        return ProblemDetail.forStatusAndDetail(status, exception.getMessage());
+    }
 
     @ExceptionHandler(ClienteJaExistenteException.class)
     public ProblemDetail conflict(final ClienteJaExistenteException exception){

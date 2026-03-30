@@ -11,7 +11,7 @@ import java.util.UUID;
 @Setter
 public class PendingAccountOpening {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column
@@ -22,6 +22,5 @@ public class PendingAccountOpening {
 
     @Column
     private boolean processed;
-
 
 }

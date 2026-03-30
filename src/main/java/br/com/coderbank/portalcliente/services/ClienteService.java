@@ -3,35 +3,37 @@ package br.com.coderbank.portalcliente.services;
 import br.com.coderbank.portalcliente.dtos.requests.ClienteRequestDTO;
 import br.com.coderbank.portalcliente.dtos.responses.ClienteResponseDTO;
 import br.com.coderbank.portalcliente.dtos.responses.ClienteResumoResponseDTO;
+import br.com.coderbank.portalcliente.dtos.responses.PendingAccountStatusResponse;
 import br.com.coderbank.portalcliente.entities.Cliente;
 import br.com.coderbank.portalcliente.entities.PendingAccountOpening;
-import br.com.coderbank.portalcliente.entities.enums.Status;
+import br.com.coderbank.portalcliente.enums.AccountStatus;
+import br.com.coderbank.portalcliente.enums.costumerStatus;
 import br.com.coderbank.portalcliente.exceptions.AccountNotCreatedException;
 import br.com.coderbank.portalcliente.exceptions.ClienteJaExistenteException;
 import br.com.coderbank.portalcliente.openfeign.dtos.requests.AccountRequestDTO;
 import br.com.coderbank.portalcliente.openfeign.feignclients.AccountClient;
 import br.com.coderbank.portalcliente.repositories.ClienteRepository;
 import br.com.coderbank.portalcliente.repositories.PendingAccountRepository;
+import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.net.ConnectException;
+import java.util.UUID;
 import java.util.function.Function;
 
 @Service
+@RequiredArgsConstructor
 public class ClienteService {
 
+    private final ClienteRepository repository;
+    private final AccountClient accountClient;
+    private final PendingAccountRepository pendingAccountRepository;
 
-    @Autowired
-    private ClienteRepository repository;
-
-    @Autowired
-    private AccountClient accountClient;
-
-    @Autowired
-    private PendingAccountRepository pendingAccountRepository;
 
     public ClienteResponseDTO salvar(final ClienteRequestDTO clienteRequestDTO){
         verificarCpfDuplicado(clienteRequestDTO);
@@ -40,7 +42,7 @@ public class ClienteService {
 
         BeanUtils.copyProperties(clienteRequestDTO, clienteEntity);
 
-        clienteEntity.setStatus(Status.ATIVO);
+        clienteEntity.setStatus(costumerStatus.ATIVO);
 
         repository.save(clienteEntity);
 
@@ -58,7 +60,7 @@ public class ClienteService {
                     null,
                     "Cliente cadastrado e conta criada com sucesso!"
             );
-        } catch (AccountNotCreatedException e) {
+        } catch (FeignException  | AccountNotCreatedException e) {
             PendingAccountOpening pending = new PendingAccountOpening();
             pending.setClientId(clienteEntity.getId());
             pending.setAttempts(0);
@@ -74,6 +76,18 @@ public class ClienteService {
                     "Cliente cadastrado! Sua conta está sendo criada e ficará disponível em breve."
                     );
         }
+    }
+
+    public PendingAccountStatusResponse checkAccountStatus(UUID uuid){
+        var pending = pendingAccountRepository.existsByClientId(uuid);
+
+        if (pending){
+            return new PendingAccountStatusResponse(
+                    uuid, AccountStatus.PENDING, "Opening account still in process, try again later"
+            );
+        }else return new PendingAccountStatusResponse(
+                uuid, AccountStatus.CREATED, "Account created successfully"
+        );
     }
 
     public Page<ClienteResumoResponseDTO> obterClientes(Pageable pageable){

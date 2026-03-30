@@ -1,7 +1,7 @@
 package br.com.coderbank.portalcliente.entities;
 
 
-import br.com.coderbank.portalcliente.entities.enums.Status;
+import br.com.coderbank.portalcliente.enums.costumerStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -33,7 +33,7 @@ public class Cliente {
     private String endereco;
 
     @Column
-    private Status status;
+    private costumerStatus costumerStatus;
 
     @Column
     @CreationTimestamp
@@ -98,12 +98,12 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public Status getStatus() {
-        return status;
+    public costumerStatus getStatus() {
+        return costumerStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(costumerStatus costumerStatus) {
+        this.costumerStatus = costumerStatus;
     }
 
     public String getCriadoDataEHora() {

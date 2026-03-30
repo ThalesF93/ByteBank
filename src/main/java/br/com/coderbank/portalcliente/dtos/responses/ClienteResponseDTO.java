@@ -1,13 +1,13 @@
 package br.com.coderbank.portalcliente.dtos.responses;
 
-import br.com.coderbank.portalcliente.entities.enums.Status;
+import br.com.coderbank.portalcliente.enums.costumerStatus;
 
 import java.util.UUID;
 
 public record ClienteResponseDTO(
         UUID id,
 
-        Status status,
+        costumerStatus costumerStatus,
 
         String criadoPeloUsuario,
 

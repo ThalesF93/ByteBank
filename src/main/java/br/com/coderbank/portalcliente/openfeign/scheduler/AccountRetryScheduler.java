@@ -1,6 +1,7 @@
 package br.com.coderbank.portalcliente.openfeign.scheduler;
 
 import br.com.coderbank.portalcliente.entities.PendingAccountOpening;
+import br.com.coderbank.portalcliente.exceptions.AccountNotCreatedException;
 import br.com.coderbank.portalcliente.openfeign.dtos.requests.AccountRequestDTO;
 import br.com.coderbank.portalcliente.openfeign.feignclients.AccountClient;
 import br.com.coderbank.portalcliente.repositories.PendingAccountRepository;
@@ -31,7 +32,7 @@ public class AccountRetryScheduler {
                 accountClient.openAccount(requestDTO);
 
                 repository.delete(pendingOpening);
-            } catch (Exception e) {
+            } catch (AccountNotCreatedException e) {
                 pendingOpening.setAttempts(pendingOpening.getAttempts()+1);
                 repository.save(pendingOpening);
             }
