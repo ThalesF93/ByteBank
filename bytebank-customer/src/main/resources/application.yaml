@@ -3,19 +3,16 @@ spring:
     problemdetails:
       enabled: false
   application:
-    name: portalcliente
+    name: costumers
   jpa:
     hibernate:
       ddl-auto: update
-  h2:
-    console:
-      enabled: true
-      path: /h2
+    show-sql: true
   datasource:
-    url: jdbc:h2:mem:coder-bank-cliente
-    driver-class-name: org.h2.Driver
-    username: user
-    password: user
+    url: jdbc:postgresql://localhost:5433/CUSTOMER_DB
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: supino2604
   cloud:
     openfeign:
       circuitbreaker:
