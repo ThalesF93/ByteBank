@@ -1,9 +1,9 @@
 package br.com.coderbank.operacoes_bancarias.controllers;
 
-import br.com.coderbank.operacoes_bancarias.dtos.contas.request.AccountRequestDTO;
-import br.com.coderbank.operacoes_bancarias.dtos.contas.response.AccountResponseDTO;
+import br.com.coderbank.operacoes_bancarias.dtos.request.AccountRequestDTO;
+import br.com.coderbank.operacoes_bancarias.dtos.response.AccountResponseDTO;
 import br.com.coderbank.operacoes_bancarias.dtos.transacoes.responses.TransactionResponseDTO;
-import br.com.coderbank.operacoes_bancarias.services.contas.AccountService;
+import br.com.coderbank.operacoes_bancarias.services.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

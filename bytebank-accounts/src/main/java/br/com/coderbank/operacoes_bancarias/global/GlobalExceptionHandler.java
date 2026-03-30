@@ -2,7 +2,6 @@ package br.com.coderbank.operacoes_bancarias.global;
 
 import br.com.coderbank.operacoes_bancarias.exceptions.AccountNotFoundException;
 import br.com.coderbank.operacoes_bancarias.exceptions.CustomerNotFoundException;
-import br.com.coderbank.operacoes_bancarias.exceptions.InsufficientBalanceException;
 import br.com.coderbank.operacoes_bancarias.exceptions.SameAccountException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -58,21 +57,6 @@ public class GlobalExceptionHandler {
 
         problemDetail.setTitle("Customer not found");
         problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/not_found"));
-
-        return problemDetail;
-    }
-
-
-    @ExceptionHandler(InsufficientBalanceException.class)
-    public ProblemDetail handleInsufficientBalance(final Throwable exception){
-
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
-                HttpStatus.CONFLICT,
-                exception.getMessage()
-        );
-
-        problemDetail.setTitle("Insufficient Balance for operation");
-        problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/conflict"));
 
         return problemDetail;
     }
