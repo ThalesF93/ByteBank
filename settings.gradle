@@ -1,7 +1,7 @@
 rootProject.name = 'bytebank'
 
-include 'bytebank-eureka'
-include 'bytebank-gateway'
+//include 'bytebank-eureka'
+//include 'bytebank-gateway'
 include 'bytebank-accounts'
 include 'bytebank-customer'
-include 'transactions'
+include 'bytebank-transactions'

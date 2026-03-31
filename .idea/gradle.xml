@@ -6,6 +6,14 @@
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/bytebank-accounts" />
+            <option value="$PROJECT_DIR$/bytebank-customer" />
+            <option value="$PROJECT_DIR$/bytebank-transactions" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>

@@ -17,7 +17,6 @@ import br.com.coderbank.portalcliente.repositories.PendingAccountRepository;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,14 +34,11 @@ public class CustomerService {
     private final PendingAccountRepository pendingAccountRepository;
 
 
-    public CustomerResponseDTO saveCostumer(final CustomerRequestDTO customerRequestDTO){
+    public CustomerResponseDTO saveCostumer(CustomerRequestDTO customerRequestDTO){
         checkDuplicateCPF(customerRequestDTO);
+        // BeanUtils.copyProperties(customerRequestDTO, customerEntity);
 
-        var customerEntity = new Customer();
-
-        BeanUtils.copyProperties(customerRequestDTO, customerEntity);
-
-        customerEntity.setCustomerStatus(CustomerStatus.ACTIVE);
+        var customerEntity = dtoToEntity(customerRequestDTO);
 
         repository.save(customerEntity);
         log.info("Registered customer. customerId={}", customerEntity.getId());
@@ -69,6 +65,20 @@ public class CustomerService {
         }
     }
 
+    private static Customer dtoToEntity(CustomerRequestDTO customerRequestDTO) {
+        var customerEntity = new Customer();
+        customerEntity.setName(customerRequestDTO.name());
+        customerEntity.setCpf(customerRequestDTO.cpf());
+        customerEntity.setAge(customerRequestDTO.age());
+        customerEntity.setEmail(customerRequestDTO.email());
+        customerEntity.setAddress(customerRequestDTO.address());
+
+
+
+        customerEntity.setCustomerStatus(CustomerStatus.ACTIVE);
+        return customerEntity;
+    }
+
     public PendingAccountStatusResponse checkAccountStatus(UUID uuid){
         var pending = pendingAccountRepository.existsByClientId(uuid);
 
@@ -88,7 +98,7 @@ public class CustomerService {
 
     private static Function<Customer, CustomerShortResponseDTO> converteParaClienteResumoResponseDTO() {
         return customer -> new CustomerShortResponseDTO(
-                customer.getId(), customer.getNome(), customer.getCustomerStatus()
+                customer.getId(), customer.getName(), customer.getCustomerStatus()
         );
     }
 

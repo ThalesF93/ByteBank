@@ -24,8 +24,8 @@ public record CustomerResponseDTO(
         return new CustomerResponseDTO(
                 entity.getId(),
                 entity.getCustomerStatus(),
-                entity.getCriadoPeloUsuario(),
-                entity.getCriadoDataEHora(),
+                entity.getCreateByUser(),
+                entity.getCreatedDate(),
                 null,
                 null,
                 "Registered customer and account created successfully!"
@@ -35,8 +35,8 @@ public record CustomerResponseDTO(
         return new CustomerResponseDTO(
                 entity.getId(),
                 entity.getCustomerStatus(),
-                entity.getCriadoPeloUsuario(),
-                entity.getCriadoDataEHora(),
+                entity.getCreateByUser(),
+                entity.getCreatedDate(),
                 null,
                 null,
                 "Customer registered! Your account is being created and will be available soon."

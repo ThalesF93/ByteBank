@@ -1,10 +1,13 @@
 package br.com.coderbank.operacoes_bancarias.services;
 
 import br.com.coderbank.operacoes_bancarias.dtos.request.AccountRequestDTO;
+import br.com.coderbank.operacoes_bancarias.dtos.request.DepositRequestDTO;
+import br.com.coderbank.operacoes_bancarias.dtos.request.WithdrawRequestDTO;
 import br.com.coderbank.operacoes_bancarias.dtos.response.AccountResponseDTO;
 import br.com.coderbank.operacoes_bancarias.entities.Account;
 import br.com.coderbank.operacoes_bancarias.exceptions.AccountNotFoundException;
 import br.com.coderbank.operacoes_bancarias.exceptions.ClosingAccountException;
+import br.com.coderbank.operacoes_bancarias.exceptions.InsufficientBalanceException;
 import br.com.coderbank.operacoes_bancarias.repositories.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,5 +65,36 @@ public class AccountService {
                 .collect(Collectors.toList());
     }
 
+    private Account getAccount(UUID accountId) {
+        return accountRepository.findById(accountId)
+                .orElseThrow(() -> new AccountNotFoundException("Account not found"));
+    }
+
+    public void debit(WithdrawRequestDTO withdrawRequestDTO) {
+       Account account = getAccount(withdrawRequestDTO.accountId());
+       balanceValidation(account, withdrawRequestDTO.amount());
+
+       account.setBalance(account.getBalance().subtract(withdrawRequestDTO.amount()));
+       accountRepository.save(account);
+    }
+
+    public void credit(DepositRequestDTO depositRequestDTO) {
+        Account account = getAccount(depositRequestDTO.accountId());
+
+        account.setBalance(account.getBalance().add(depositRequestDTO.amount()));
+        accountRepository.save(account);
+    }
+
+
+    protected void balanceValidation(Account account, BigDecimal amount) {
+        if (isBalanceInsufficient(account, amount)){
+            log.warn("Withdraw must not be more than balance, value={}, balance={}", amount, account.getBalance());
+            throw new InsufficientBalanceException("Unauthorized operation! Withdraw must not be more than balance");
+        }
+    }
+
+    private static boolean isBalanceInsufficient(Account account, BigDecimal amount) {
+        return account.getBalance().compareTo(amount) < 0;
+    }
 
 }
