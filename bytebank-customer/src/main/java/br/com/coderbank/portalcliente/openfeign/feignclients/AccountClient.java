@@ -20,4 +20,5 @@ public interface AccountClient {
     ResponseEntity<Void> openAccount(@RequestBody AccountRequestDTO request);
 
 
+
 }

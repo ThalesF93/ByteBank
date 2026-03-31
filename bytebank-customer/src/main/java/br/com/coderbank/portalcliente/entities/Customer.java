@@ -21,7 +21,7 @@ public class Customer {
     private UUID id;
 
     @Column(nullable = false, length = 50)
-    private String nome;
+    private String name;
 
 
     @Column(nullable = false, unique = true, length = 11)
@@ -31,10 +31,10 @@ public class Customer {
     private String email;
 
     @Column
-    private Integer idade;
+    private Integer age;
 
     @Column
-    private String endereco;
+    private String address;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -42,17 +42,17 @@ public class Customer {
 
     @Column
     @CreationTimestamp
-    private String criadoDataEHora;
+    private String createdDate;
 
     @Column
-    private String criadoPeloUsuario;
+    private String createByUser;
 
     @Column
-    private String editadoPeloUsuario;
+    private String editedByUser;
 
     @Column
     @UpdateTimestamp
-    private String editadoDataEHora;
+    private String editDate;
 
 
 }

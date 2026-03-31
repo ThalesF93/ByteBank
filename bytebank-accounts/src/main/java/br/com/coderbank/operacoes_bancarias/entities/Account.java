@@ -36,10 +36,7 @@ public class Account {
     private String accountNumber;
 
     @Column
-    protected BigDecimal balance = BigDecimal.ZERO;
-
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private final List<Transaction> transactions = new ArrayList<>();
+    private BigDecimal balance = BigDecimal.ZERO;
 
     @Column
     @CreationTimestamp
@@ -61,16 +58,6 @@ public class Account {
         this.agency = generateAgencyNumber();
     }
 
-    public List<Transaction> getTransactions() {
-        return Collections.unmodifiableList(transactions);
-    }
-
-    public void addTransactions(Transaction transaction) {
-        transaction.setAccount(this);
-        transactions.add(transaction);
-    }
-
-
     private String generateAccountNumber(){
         int number = SECURE_RANDOM.nextInt(90_000_000) + 10_000_000;
         return String.valueOf(number);
@@ -80,13 +67,7 @@ public class Account {
         return String.format("%06d", RANDOM.nextInt(900_000) + 100_000);
     }
 
-    public void debit(BigDecimal amount) {
-        this.balance = this.balance.subtract(amount);
-    }
 
-    public void credit(BigDecimal amount) {
-        this.balance = this.balance.add(amount);
-    }
 
     @Override
     public String toString() {

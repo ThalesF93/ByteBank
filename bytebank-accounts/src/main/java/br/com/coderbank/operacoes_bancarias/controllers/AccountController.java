@@ -1,8 +1,9 @@
 package br.com.coderbank.operacoes_bancarias.controllers;
 
 import br.com.coderbank.operacoes_bancarias.dtos.request.AccountRequestDTO;
+import br.com.coderbank.operacoes_bancarias.dtos.request.DepositRequestDTO;
+import br.com.coderbank.operacoes_bancarias.dtos.request.WithdrawRequestDTO;
 import br.com.coderbank.operacoes_bancarias.dtos.response.AccountResponseDTO;
-import br.com.coderbank.operacoes_bancarias.dtos.transacoes.responses.TransactionResponseDTO;
 import br.com.coderbank.operacoes_bancarias.services.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -39,10 +39,23 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.OK).body(account);
     }
 
-    @GetMapping("/{id}/transactions")
-    public ResponseEntity<List<TransactionResponseDTO>> getStatements(@PathVariable UUID id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> closeAccount(@PathVariable UUID id){
+        log.info("Request received. endpoint=Delete /accounts accountID={}", id);
+        accountService.closeAccount(id);
+        log.info("Request completed! Account closed successfully");
+        return ResponseEntity.notFound().build();
+    }
 
-        var transactions = accountService.generateBankStatement(id);
-        return ResponseEntity.status(HttpStatus.OK).body(transactions);
+    @PostMapping("/debit")
+    public ResponseEntity<Void> debit(@RequestBody WithdrawRequestDTO withdrawRequestDTO){
+        accountService.debit(withdrawRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/credit")
+    public ResponseEntity<Void> credit(@RequestBody DepositRequestDTO depositRequestDTO){
+        accountService.credit(depositRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

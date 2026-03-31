@@ -1,4 +1,9 @@
 spring:
+  cloud:
+    openfeign:
+      httpclient:
+        hc5:
+          enabled: true
   mvc:
     problemdetails:
       enabled: false

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="bytebank.bytebank-accounts.main" />
+        <module name="bytebank.bytebank-customer.main" />
+        <module name="bytebank.bytebank-transactions.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="21" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="bytebank.bytebank-accounts" options="-parameters" />
+      <module name="bytebank.bytebank-accounts.main" options="-parameters" />
+      <module name="bytebank.bytebank-accounts.test" options="-parameters" />
+      <module name="bytebank.bytebank-customer" options="-parameters" />
+      <module name="bytebank.bytebank-customer.main" options="-parameters" />
+      <module name="bytebank.bytebank-customer.test" options="-parameters" />
+      <module name="bytebank.bytebank-eureka" options="-parameters" />
+      <module name="bytebank.bytebank-eureka.main" options="-parameters" />
+      <module name="bytebank.bytebank-eureka.test" options="-parameters" />
+      <module name="bytebank.bytebank-gateway" options="-parameters" />
+      <module name="bytebank.bytebank-gateway.main" options="-parameters" />
+      <module name="bytebank.bytebank-gateway.test" options="-parameters" />
+      <module name="bytebank.bytebank-transactions" options="-parameters" />
+      <module name="bytebank.bytebank-transactions.main" options="-parameters" />
+      <module name="bytebank.bytebank-transactions.test" options="-parameters" />
+      <module name="bytebank.transactions" options="-parameters" />
+      <module name="bytebank.transactions.main" options="-parameters" />
+      <module name="bytebank.transactions.test" options="-parameters" />
+    </option>
+  </component>
+</project>

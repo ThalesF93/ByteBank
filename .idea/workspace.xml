@@ -5,124 +5,98 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb97cdf9-6eb4-439f-b362-fd056bab4717" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/gradle/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/gradle/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/OperacoesBancariasApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/controllers/AccountController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/controllers/TransactionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/contas/request/AccountRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/contas/response/AccountResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/transacoes/requests/DepositRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/transacoes/requests/TransferenceRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/transacoes/requests/WithdrawRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/transacoes/responses/AmountResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/transacoes/responses/TransactionResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/entities/Account.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/entities/Transaction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/enums/FeeType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/enums/OperationType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/AccountNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/ClosingAccountException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/CustomerNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/DuplicateAccountException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/InsufficientBalanceException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/InvalidAmountException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/SameAccountException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/global/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/repositories/AccountRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/services/contas/AccountService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/java/br/com/coderbank/operacoes_bancarias/services/transacoes/TransactionService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/PortalclienteApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/controllers/ClienteControllerV1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/controllers/ClienteControllerV2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/controllers/ControllerExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/dtos/requests/CheckingPendingAccountsDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/dtos/requests/ClienteRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/dtos/responses/ClienteResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/dtos/responses/ClienteResumoResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/dtos/responses/PagedResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/dtos/responses/PendingAccountStatusResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/entities/Cliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/entities/PendingAccountOpening.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/enums/AccountStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/enums/costumerStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/exceptions/AccountNotCreatedException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/exceptions/ClienteJaExistenteException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/exceptions/ResourceNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/openfeign/config/FeignConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/openfeign/config/FeignErrorDecoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/openfeign/dtos/requests/AccountRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/openfeign/dtos/responses/FeignClienteResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/openfeign/fallback/AccountClienteFallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/openfeign/feignclients/AccountClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/openfeign/scheduler/AccountRetryScheduler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/repositories/ClienteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/repositories/PendingAccountRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/java/br/com/coderbank/portalcliente/services/ClienteService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/src/test/java/br/com/coderbank/portalcliente/PortalclienteApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/src/test/java/br/com/coderbank/operacoes_bancarias/OperacoesBancariasApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-operacoesBancarias/statements/42653953.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/PortalclienteApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/controllers/ClienteControllerV1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/controllers/ClienteControllerV2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/controllers/ControllerExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/dtos/requests/CheckingPendingAccountsDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/dtos/requests/ClienteRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/dtos/responses/ClienteResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/dtos/responses/ClienteResumoResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/dtos/responses/PagedResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/dtos/responses/PendingAccountStatusResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/entities/Cliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/entities/PendingAccountOpening.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/enums/AccountStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/enums/costumerStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/exceptions/AccountNotCreatedException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/exceptions/ClienteJaExistenteException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/exceptions/ResourceNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/openfeign/config/FeignConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/openfeign/config/FeignErrorDecoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/openfeign/dtos/requests/AccountRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/openfeign/dtos/responses/FeignClienteResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/openfeign/fallback/AccountClienteFallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/openfeign/feignclients/AccountClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/openfeign/scheduler/AccountRetryScheduler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/repositories/ClienteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/repositories/PendingAccountRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/java/br/com/coderbank/portalcliente/services/ClienteService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coderbank-portal-cliente/src/test/java/br/com/coderbank/portalcliente/PortalclienteApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/developer-tools.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/bytebank-accounts/bytebank.bytebank-accounts.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/bytebank-customer/bytebank.bytebank-customer.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/bytebank-transactions/bytebank.bytebank-transactions.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/request/DepositRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/request/WithdrawRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/InsufficientBalanceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/openfeign/feignclients/AccountClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/repositories/TransactionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/controllers/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/entities/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/entities/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/services/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/controllers/ControllerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/controllers/ControllerExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/responses/CustomerResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/responses/CustomerResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/entities/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/entities/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/feignclients/AccountClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/feignclients/AccountClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/services/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/TransactionsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/TransactionsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/controllers/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/controllers/TransactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/dtos/requests/DepositRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/dtos/requests/DepositRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/dtos/requests/WithdrawRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/dtos/requests/WithdrawRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/entities/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/entities/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/services/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/services/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="bytebank" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Record" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -134,19 +108,126 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.Build ByteBank.executor": "Run",
+    "Gradle.ByteBank [dependencies].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.OperacoesBancariasApplication.executor": "Run",
+    "Spring Boot.PortalclienteApplication.executor": "Run",
+    "Spring Boot.TransactionsApplication.executor": "Run",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feature/develop",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/User/OneDrive/Documentos/Java Projetos 2026/ByteBank",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.com.bytebank.transactions.dtos.requests" />
+      <recent name="br.com.coderbank.operacoes_bancarias.exceptions" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="OperacoesBancariasApplication" value="STOPPED" />
+              <entry key="PortalclienteApplication" value="STOPPED" />
+              <entry key="TransactionsApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.TransactionsApplication">
+    <configuration name="ByteBank [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="OperacoesBancariasApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="bytebank.bytebank-accounts.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.coderbank.operacoes_bancarias.OperacoesBancariasApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PortalclienteApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="bytebank.bytebank-customer.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.coderbank.portalcliente.PortalclienteApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransactionsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="bytebank.bytebank-transactions.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.bytebank.transactions.TransactionsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.ByteBank [dependencies]" />
+      <item itemvalue="Spring Boot.PortalclienteApplication" />
+      <item itemvalue="Spring Boot.OperacoesBancariasApplication" />
+      <item itemvalue="Spring Boot.TransactionsApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ByteBank [dependencies]" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -164,6 +245,10 @@
       <updated>1774896214723</updated>
       <workItem from="1774896216883" duration="95000" />
       <workItem from="1774896368792" duration="2000" />
+      <workItem from="1774966080041" duration="189000" />
+      <workItem from="1774966285779" duration="235000" />
+      <workItem from="1774966540765" duration="347000" />
+      <workItem from="1774966938469" duration="15474000" />
     </task>
     <servers />
   </component>
