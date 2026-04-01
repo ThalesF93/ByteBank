@@ -5,55 +5,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb97cdf9-6eb4-439f-b362-fd056bab4717" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/developer-tools.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/bytebank-accounts/bytebank.bytebank-accounts.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/bytebank-customer/bytebank.bytebank-customer.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/bytebank-transactions/bytebank.bytebank-transactions.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/request/DepositRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/request/WithdrawRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/InsufficientBalanceException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/openfeign/feignclients/AccountClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/repositories/TransactionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.14/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/checksums/sha1-checksums.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/enums/TransactionStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/exceptions/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/openfeign/config/FeignConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/openfeign/config/FeignErrorDecoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/openfeign/dtos/requests/AccountRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/openfeign/dtos/responses/FeignClienteResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/openfeign/fallback/AccountClienteFallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/openfeign/scheduler/AccountRetryScheduler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-accounts/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/controllers/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/entities/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/entities/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/services/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/controllers/ControllerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/controllers/ControllerExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/responses/CustomerResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/responses/CustomerResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/entities/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/entities/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/feignclients/AccountClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/feignclients/AccountClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/services/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/TransactionsApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/TransactionsApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/controllers/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/controllers/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/dtos/requests/DepositRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/dtos/requests/DepositRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/dtos/requests/WithdrawRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/dtos/requests/WithdrawRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/OperacoesBancariasApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/AccountsApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/controllers/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/controllers/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/request/AccountRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/dtos/request/AccountRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/request/DepositRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/dtos/request/DepositRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/request/WithdrawRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/dtos/request/WithdrawRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/dtos/response/AccountResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/dtos/response/AccountResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/entities/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/entities/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/AccountNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/exceptions/AccountNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/ClosingAccountException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/exceptions/ClosingAccountException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/CustomerNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/exceptions/CustomerNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/DuplicateAccountException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/exceptions/DuplicateAccountException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/InsufficientBalanceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/exceptions/InsufficientBalanceException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/exceptions/SameAccountException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/exceptions/SameAccountException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/global/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/global/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/repositories/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/repositories/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/coderbank/operacoes_bancarias/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/services/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/test/java/br/com/coderbank/operacoes_bancarias/OperacoesBancariasApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/test/java/br/com/bytebank/accounts/AccountsApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/PortalclienteApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/CustomersApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/controllers/ClienteControllerV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/controllers/ClienteControllerV1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/controllers/ClienteControllerV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/controllers/ClienteControllerV2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/controllers/ControllerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/controllers/ControllerExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/requests/CheckingPendingAccountsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/dtos/requests/CheckingPendingAccountsDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/requests/CustomerRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/dtos/requests/CustomerRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/responses/CustomerResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/dtos/responses/CustomerResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/responses/CustomerShortResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/dtos/responses/CustomerShortResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/responses/PagedResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/dtos/responses/PagedResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/dtos/responses/PendingAccountStatusResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/dtos/responses/PendingAccountStatusResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/entities/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/entities/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/entities/PendingAccountOpening.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/entities/PendingAccountOpening.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/enums/AccountStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/enums/AccountStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/enums/CustomerStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/enums/CustomerStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/exceptions/AccountNotCreatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/exceptions/AccountNotCreatedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/exceptions/ClienteJaExistenteException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/exceptions/ClienteJaExistenteException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/exceptions/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/exceptions/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/config/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/openfeign/config/FeignConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/config/FeignErrorDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/openfeign/config/FeignErrorDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/dtos/requests/AccountRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/openfeign/dtos/requests/AccountRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/dtos/responses/FeignClienteResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/openfeign/dtos/responses/FeignClienteResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/fallback/AccountClienteFallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/openfeign/fallback/AccountClienteFallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/feignclients/AccountClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/openfeign/feignclients/AccountClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/openfeign/scheduler/AccountRetryScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/openfeign/scheduler/AccountRetryScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/repositories/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/repositories/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/repositories/PendingAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/repositories/PendingAccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/coderbank/portalcliente/services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/services/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/test/java/br/com/coderbank/portalcliente/PortalclienteApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/test/java/br/com/bytebank/customers/CustomersApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-eureka/build/resolvedMainClassName" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-eureka/build/tmp/bootJar/MANIFEST.MF" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/entities/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/entities/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/services/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/services/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +105,7 @@
       <list>
         <option value="Interface" />
         <option value="Record" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -123,6 +142,8 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AccountsApplication.executor": "Run",
+    "Spring Boot.CustomersApplication (1).executor": "Run",
     "Spring Boot.OperacoesBancariasApplication.executor": "Run",
     "Spring Boot.PortalclienteApplication.executor": "Run",
     "Spring Boot.TransactionsApplication.executor": "Run",
@@ -130,7 +151,7 @@
     "git-widget-placeholder": "feature/develop",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/OneDrive/Documentos/Java Projetos 2026/ByteBank",
+    "last_opened_file_path": "C:/Users/User/OneDrive/Documentos/Java Projetos 2026/ByteBank/bytebank-transactions/src/main/java/br/com/bytebank/transactions/openfeign",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -143,7 +164,12 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\OneDrive\Documentos\Java Projetos 2026\ByteBank\bytebank-transactions\src\main\java\br\com\bytebank\transactions\openfeign" />
+      <recent name="C:\Users\User\OneDrive\Documentos\Java Projetos 2026\ByteBank\bytebank-transactions\src\main\java\br\com\bytebank\transactions\openfeign\config" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.com.bytebank.transactions.exceptions" />
       <recent name="br.com.bytebank.transactions.dtos.requests" />
       <recent name="br.com.coderbank.operacoes_bancarias.exceptions" />
     </key>
@@ -162,8 +188,8 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="OperacoesBancariasApplication" value="STOPPED" />
-              <entry key="PortalclienteApplication" value="STOPPED" />
+              <entry key="AccountsApplication" value="STOPPED" />
+              <entry key="CustomersApplication (1)" value="STOPPED" />
               <entry key="TransactionsApplication" value="STOPPED" />
             </map>
           </value>
@@ -171,7 +197,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.TransactionsApplication">
+  <component name="RunManager" selected="Spring Boot.CustomersApplication (1)">
     <configuration name="ByteBank [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -194,16 +220,28 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="OperacoesBancariasApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="AccountsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="bytebank.bytebank-accounts.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.coderbank.operacoes_bancarias.OperacoesBancariasApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.bytebank.accounts.AccountsApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.bytebank.accounts.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PortalclienteApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="CustomersApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="bytebank.bytebank-customer.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.coderbank.portalcliente.PortalclienteApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.bytebank.customers.CustomersApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.bytebank.customers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -218,12 +256,14 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.ByteBank [dependencies]" />
-      <item itemvalue="Spring Boot.PortalclienteApplication" />
-      <item itemvalue="Spring Boot.OperacoesBancariasApplication" />
       <item itemvalue="Spring Boot.TransactionsApplication" />
+      <item itemvalue="Spring Boot.AccountsApplication" />
+      <item itemvalue="Spring Boot.CustomersApplication (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.CustomersApplication (1)" />
+        <item itemvalue="Spring Boot.AccountsApplication" />
         <item itemvalue="Gradle.ByteBank [dependencies]" />
       </list>
     </recent_temporary>
@@ -249,6 +289,8 @@
       <workItem from="1774966285779" duration="235000" />
       <workItem from="1774966540765" duration="347000" />
       <workItem from="1774966938469" duration="15474000" />
+      <workItem from="1775064593501" duration="153000" />
+      <workItem from="1775064770919" duration="4150000" />
     </task>
     <servers />
   </component>
