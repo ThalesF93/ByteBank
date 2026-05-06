@@ -18,7 +18,7 @@ public record CustomerRequestDTO(
         @NotBlank(message = "The EMAIL field is required.")
         String email,
 
-        @NotBlank(message = "The Adress field is required.")
+        @NotBlank(message = "The Address field is required.")
         String address,
 
         @Min(message = "Minimum age is 18 years.", value = 18)

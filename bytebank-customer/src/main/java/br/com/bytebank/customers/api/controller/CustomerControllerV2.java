@@ -5,7 +5,7 @@ import br.com.bytebank.customers.api.dtos.responses.CustomerResponseDTO;
 import br.com.bytebank.customers.api.dtos.responses.CustomerShortResponseDTO;
 import br.com.bytebank.customers.api.dtos.responses.PagedResponse;
 import br.com.bytebank.customers.api.dtos.responses.PendingAccountStatusResponse;
-import br.com.bytebank.customers.application.impl.CustomerServiceImpl;
+import br.com.bytebank.customers.application.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v2/clientes")
+@RequestMapping("api/v2/customers")
 @RequiredArgsConstructor
 @Slf4j
-public class ClienteControllerV2 {
+public class CustomerControllerV2 {
 
-    private final CustomerServiceImpl service;
+    private final CustomerService service;
 
     @PostMapping
     public ResponseEntity<CustomerResponseDTO> save(@Valid @RequestBody CustomerRequestDTO customerRequestDTO){
@@ -31,7 +31,7 @@ public class ClienteControllerV2 {
                 .addKeyValue("Customer" , customerRequestDTO.name())
                 .log();
 
-        var costumer = service.saveCostumer(customerRequestDTO);
+        var costumer = service.createCustomer(customerRequestDTO);
 
         log.info("Request completed. clientId={} status={}", costumer.id(), costumer.customerStatus());
         return ResponseEntity.status(HttpStatus.CREATED)

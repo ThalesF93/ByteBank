@@ -5,6 +5,7 @@ package br.com.bytebank.customers.api.dtos.responses;
 import br.com.bytebank.customers.domain.entity.Customer;
 import br.com.bytebank.customers.domain.enums.CustomerStatus;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record CustomerResponseDTO(
@@ -14,7 +15,7 @@ public record CustomerResponseDTO(
 
         String createByUser,
 
-        String createdDate,
+        LocalDateTime createdDate,
 
         String editedByUser,
 
