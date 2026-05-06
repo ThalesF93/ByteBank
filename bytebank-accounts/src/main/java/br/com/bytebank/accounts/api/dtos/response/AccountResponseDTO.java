@@ -1,6 +1,6 @@
 package br.com.bytebank.accounts.api.dtos.response;
 
-import br.com.bytebank.accounts.domain.entities.Account;
+import br.com.bytebank.accounts.domain.entity.Account;
 
 import java.math.BigDecimal;
 import java.util.UUID;

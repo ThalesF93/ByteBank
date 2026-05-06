@@ -1,6 +1,6 @@
 package br.com.bytebank.customers.infrastructure.repositories;
 
-import br.com.bytebank.customers.domain.entities.Customer;
+import br.com.bytebank.customers.domain.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
