@@ -39,8 +39,8 @@ public class ControllerExceptionHandler {
             exception.getMessage()
         );
         
-        problemDetail.setTitle("Customer já existente");
-        problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/cliente-duplicado"));
+        problemDetail.setTitle("Customer already exists");
+        problemDetail.setType(URI.create("https://api.byteback.com.br/errors/duplicated-customer"));
         
         return problemDetail;
     }
@@ -52,10 +52,10 @@ public class ControllerExceptionHandler {
 
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
             HttpStatus.BAD_REQUEST, 
-            "Erro de validação nos campos"
+            "validation field error"
         );
         
-        problemDetail.setTitle("Dados inválidos");
+        problemDetail.setTitle("Invalid data");
         problemDetail.setProperty("errors", validationErrors);
         problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/validation"));
 

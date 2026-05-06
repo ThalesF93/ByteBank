@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb97cdf9-6eb4-439f-b362-fd056bab4717" name="Changes" comment="" />
+    <list default="true" id="bb97cdf9-6eb4-439f-b362-fd056bab4717" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/domain/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/domain/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/controller/ClienteControllerV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/controller/CustomerControllerV1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/controller/ClienteControllerV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/controller/CustomerControllerV2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/controller/ControllerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/controller/ControllerExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/dtos/requests/CustomerRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/dtos/requests/CustomerRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/dtos/responses/CustomerResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/api/dtos/responses/CustomerResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/application/impl/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/application/impl/CustomerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/application/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/application/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/domain/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/domain/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/domain/entity/PendingAccountOpening.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/domain/entity/PendingAccountOpening.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/infrastructure/openfeign/fallback/AccountClienteFallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/infrastructure/openfeign/fallback/AccountClienteFallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/infrastructure/openfeign/scheduler/AccountRetryScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/infrastructure/openfeign/scheduler/AccountRetryScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/costumers.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/costumers.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +163,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.CustomersApplication (1)">
+  <component name="RunManager" selected="Spring Boot.AccountsApplication">
     <configuration name="ByteBank [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -208,8 +231,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.CustomersApplication (1)" />
         <item itemvalue="Spring Boot.AccountsApplication" />
+        <item itemvalue="Spring Boot.CustomersApplication (1)" />
         <item itemvalue="Gradle.ByteBank [dependencies]" />
       </list>
     </recent_temporary>
@@ -242,7 +265,7 @@
       <workItem from="1775490598397" duration="8000" />
       <workItem from="1776975067774" duration="16000" />
       <workItem from="1777394694887" duration="14000" />
-      <workItem from="1778075244780" duration="3206000" />
+      <workItem from="1778075244780" duration="10339000" />
     </task>
     <servers />
   </component>

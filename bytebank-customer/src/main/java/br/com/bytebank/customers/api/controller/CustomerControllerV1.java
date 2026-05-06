@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/clientes")
-public class ClienteControllerV1 {
+public class CustomerControllerV1 {
 
     @Autowired
     private CustomerRepository repository;

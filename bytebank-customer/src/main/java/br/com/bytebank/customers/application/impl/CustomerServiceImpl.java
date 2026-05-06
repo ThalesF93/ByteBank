@@ -38,35 +38,29 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public CustomerResponseDTO saveCostumer(CustomerRequestDTO customerRequestDTO){
+    public CustomerResponseDTO createCustomer(CustomerRequestDTO customerRequestDTO){
         checkDuplicateCPF(customerRequestDTO);
         // BeanUtils.copyProperties(customerRequestDTO, customerEntity);
 
         var customerEntity = dtoToEntity(customerRequestDTO);
-
+        customerEntity.setAccountStatus(AccountStatus.PENDING);
         repository.save(customerEntity);
+
         log.info("Registered customer. customerId={}", customerEntity.getId());
 
-        try {
-
-            AccountRequestDTO accountRequestDTO = new AccountRequestDTO(customerEntity.getId());
-            accountClient.openAccount(accountRequestDTO);
-
+        try{
+            accountClient.openAccount(new AccountRequestDTO(customerEntity.getId()));
+            customerEntity.setAccountStatus(AccountStatus.CREATED);
+            repository.save(customerEntity);
             log.info("Account created successfully. customerId={}", customerEntity.getId());
 
             return CustomerResponseDTO.accountCreated(customerEntity);
 
-        } catch (FeignException | AccountNotCreatedException e) {
-            log.warn("Failed to create account, saving in pending. costumerId={} erro={}",
-                    customerEntity.getId(), e.getMessage());
-
-            PendingAccountOpening pending = new PendingAccountOpening();
-            pending.setClientId(customerEntity.getId());
-            pending.setAttempts(0);
-            pendingAccountRepository.save(pending);
-
+        } catch (AccountNotCreatedException e){
+            log.warn("Account service unavailable, account pending. customerId={}", customerEntity.getId());
             return CustomerResponseDTO.accountPending(customerEntity);
         }
+
     }
 
     private static Customer dtoToEntity(CustomerRequestDTO customerRequestDTO) {
@@ -112,7 +106,7 @@ public class CustomerServiceImpl implements CustomerService {
         final var cpf = dto.cpf();
 
         if (repository.existsByCpf(cpf)){
-            throw new ClienteJaExistenteException("Customer com o cpf " + cpf + " já existe");
+            throw new ClienteJaExistenteException("Customer with cpf " + cpf + " already exists");
         }
     }
 

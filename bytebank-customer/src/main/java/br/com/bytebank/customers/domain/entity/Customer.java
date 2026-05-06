@@ -1,28 +1,32 @@
 package br.com.bytebank.customers.domain.entity;
 
 
+import br.com.bytebank.customers.domain.enums.AccountStatus;
 import br.com.bytebank.customers.domain.enums.CustomerStatus;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(name = "customers")
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @EqualsAndHashCode.Include
     private UUID id;
 
     @Column(nullable = false, length = 50)
     private String name;
-
 
     @Column(nullable = false, unique = true, length = 11)
     private String cpf;
@@ -41,8 +45,12 @@ public class Customer {
     private CustomerStatus customerStatus;
 
     @Column
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
+
+    @Column
     @CreationTimestamp
-    private String createdDate;
+    private LocalDateTime createdDate;
 
     @Column
     private String createByUser;
@@ -52,7 +60,7 @@ public class Customer {
 
     @Column
     @UpdateTimestamp
-    private String editDate;
+    private LocalDateTime editDate;
 
 
 }

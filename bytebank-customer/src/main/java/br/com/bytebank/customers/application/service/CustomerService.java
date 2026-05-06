@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface CustomerService {
 
-    CustomerResponseDTO saveCostumer(CustomerRequestDTO customerRequestDTO);
+    CustomerResponseDTO createCustomer(CustomerRequestDTO customerRequestDTO);
 
     PendingAccountStatusResponse checkAccountStatus(UUID uuid);
 

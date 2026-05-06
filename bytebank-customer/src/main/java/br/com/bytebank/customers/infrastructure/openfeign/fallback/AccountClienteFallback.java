@@ -2,6 +2,7 @@ package br.com.bytebank.customers.infrastructure.openfeign.fallback;
 
 
 import br.com.bytebank.customers.domain.entity.PendingAccountOpening;
+import br.com.bytebank.customers.domain.exception.AccountNotCreatedException;
 import br.com.bytebank.customers.infrastructure.openfeign.dtos.requests.AccountRequestDTO;
 import br.com.bytebank.customers.infrastructure.feignclient.AccountClient;
 import br.com.bytebank.customers.infrastructure.repositories.PendingAccountRepository;
@@ -23,7 +24,7 @@ public class AccountClienteFallback implements AccountClient {
         pending.setAttempts(0);
         pending.setProcessed(false);
         repository.save(pending);
-        return ResponseEntity.ok().build();
+        throw new AccountNotCreatedException("Account service unavailable");
     }
 
 

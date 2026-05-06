@@ -2,6 +2,8 @@ package br.com.bytebank.accounts.domain.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,8 +17,8 @@ import java.util.*;
 @Table(name = "accounts")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Account {
 
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
@@ -24,6 +26,7 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @EqualsAndHashCode.Include
     private UUID id;
 
     @Column
@@ -65,30 +68,6 @@ public class Account {
 
     private String generateAgencyNumber(){
         return String.format("%06d", RANDOM.nextInt(900_000) + 100_000);
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", customerId='" + customerId + '\'' +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", balance=" + balance +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return Objects.equals(accountNumber, account.accountNumber);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(accountNumber);
     }
 
 
