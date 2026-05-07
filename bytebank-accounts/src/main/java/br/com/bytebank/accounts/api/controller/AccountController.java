@@ -32,11 +32,12 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.CREATED).body(account);
 
     }
+
     @GetMapping("/{id}")
-    public ResponseEntity<AccountResponseDTO> showAccount(@PathVariable UUID id){
+    public ResponseEntity<AccountResponseDTO> findAccount(@PathVariable UUID id){
         var account =  accountService.findAccountById(id);
 
-        return ResponseEntity.status(HttpStatus.OK).body(account);
+        return ResponseEntity.ok(account);
     }
 
     @DeleteMapping("/{id}")

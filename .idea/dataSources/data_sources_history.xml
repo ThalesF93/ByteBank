@@ -5,7 +5,7 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>C:/Users/User/OneDrive/Documentos/Java Projetos 2026/ByteBank/bytebank-customer/src/main/resources/application.yaml</remarks>
+      <remarks>/Users/izabelavelendes/Documents/Java/bytebank/ByteBank/bytebank-customer/src/main/resources/application.yaml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5433/CUSTOMER_DB</jdbc-url>
       <user-name>postgres</user-name>
@@ -22,7 +22,7 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>C:/Users/User/OneDrive/Documentos/Java Projetos 2026/ByteBank/bytebank-accounts/src/main/resources/application.yaml</remarks>
+      <remarks>/Users/izabelavelendes/Documents/Java/bytebank/ByteBank/bytebank-accounts/src/main/resources/application.yaml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5433/accounts_db</jdbc-url>
       <jdbc-additional-properties>
@@ -47,7 +47,7 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>C:/Users/User/OneDrive/Documentos/Java Projetos 2026/ByteBank/bytebank-customer/src/main/resources/application.yaml</remarks>
+      <remarks>/Users/izabelavelendes/Documents/Java/bytebank/ByteBank/bytebank-customer/src/main/resources/application.yaml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5433/CUSTOMER_DB</jdbc-url>
       <user-name>postgres</user-name>
@@ -61,7 +61,7 @@
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
-      <remarks>C:/Users/User/OneDrive/Documentos/Java Projetos 2026/ByteBank/bytebank-accounts/src/main/resources/application.yaml</remarks>
+      <remarks>/Users/izabelavelendes/Documents/Java/bytebank/ByteBank/bytebank-accounts/src/main/resources/application.yaml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5433/accounts_db</jdbc-url>
       <user-name>postgres</user-name>

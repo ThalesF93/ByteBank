@@ -8,7 +8,7 @@ import br.com.bytebank.customers.domain.enums.CustomerStatus;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public record CustomerResponseDTO(
+public record  CustomerResponseDTO(
         UUID id,
 
         CustomerStatus customerStatus,

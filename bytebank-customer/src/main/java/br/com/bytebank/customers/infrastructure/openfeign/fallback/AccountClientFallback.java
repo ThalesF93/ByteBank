@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class AccountClienteFallback implements AccountClient {
+public class AccountClientFallback implements AccountClient {
 
 
     private final PendingAccountRepository repository;
