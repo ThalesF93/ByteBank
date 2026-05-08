@@ -5,6 +5,7 @@ import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
 import br.com.bytebank.accounts.application.impl.AccountServiceImpl;
+import br.com.bytebank.accounts.application.service.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ import java.util.UUID;
 public class AccountController {
 
 
-    private final AccountServiceImpl accountService;
+    private final AccountService accountService;
 
 
     @PostMapping
@@ -45,7 +46,7 @@ public class AccountController {
         log.info("Request received. endpoint=Delete /accounts accountID={}", id);
         accountService.closeAccount(id);
         log.info("Request completed! Account closed successfully");
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/debit")

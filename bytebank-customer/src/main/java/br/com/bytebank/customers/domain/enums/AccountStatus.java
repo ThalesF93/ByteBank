@@ -1,6 +1,6 @@
 package br.com.bytebank.customers.domain.enums;
 
-public enum AccountStatus {
+public enum     AccountStatus {
 
-    PENDING, CREATED
+    PENDING, CREATED, FAILED, CANCELLED
 }

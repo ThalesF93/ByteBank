@@ -5,28 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb97cdf9-6eb4-439f-b362-fd056bab4717" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/requests/AccountOperationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/responses/DepositResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/responses/WithdrawResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/enums/FailureReason.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/exception/AccountNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/exception/AccountServiceUnavailableException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/exception/TransactionException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/infrastructure/scheduler/AccountRetryScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/responses/BankStatementResponseDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/requests/DepositRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/requests/DepositRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/requests/TransferenceRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/requests/TransferenceRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/requests/WithdrawRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/dtos/requests/WithdrawRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/api/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/api/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/domain/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-accounts/src/main/java/br/com/bytebank/accounts/domain/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/domain/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/domain/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/domain/enums/AccountStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/domain/enums/AccountStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/infrastructure/openfeign/scheduler/AccountRetryScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-customer/src/main/java/br/com/bytebank/customers/infrastructure/openfeign/scheduler/AccountRetryScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/api/controller/TransactionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/application/impl/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/application/impl/TransactionServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/application/service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/application/service/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/entity/PendingTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/entity/PendingTransaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/entity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/entity/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/exception/handler/ExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/domain/exception/handler/ExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/infrastructure/openfeign/fallback/AccountClientFallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/infrastructure/openfeign/fallback/AccountClientFallback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/infrastructure/openfeign/scheduler/AccountRetryScheduler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/infrastructure/repositories/PendingTransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/infrastructure/repositories/PendingTransactionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/infrastructure/repositories/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/bytebank-transactions/src/main/java/br/com/bytebank/transactions/infrastructure/repositories/TransactionRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,11 +56,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Record" />
         <option value="Enum" />
         <option value="Interface" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -118,7 +110,7 @@
     "Spring Boot.TransactionsApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "feature/develop",
+    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/User/OneDrive/Documentos/Java Projetos 2026/ByteBank",
@@ -127,6 +119,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "inlay.hints",
     "to.speed.mode.migration.done": "true",
@@ -158,19 +153,6 @@
         <option value="QuarkusRunConfigurationType" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
-    </option>
-    <option name="configurationStatuses">
-      <map>
-        <entry key="SpringBootApplicationConfigurationType">
-          <value>
-            <map>
-              <entry key="AccountsApplication" value="STOPPED" />
-              <entry key="CustomersApplication (1)" value="STOPPED" />
-              <entry key="TransactionsApplication" value="STOPPED" />
-            </map>
-          </value>
-        </entry>
-      </map>
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.AccountsApplication">
@@ -276,7 +258,7 @@
       <workItem from="1776975067774" duration="16000" />
       <workItem from="1777394694887" duration="14000" />
       <workItem from="1778075244780" duration="10339000" />
-      <workItem from="1778112228700" duration="7159000" />
+      <workItem from="1778112228700" duration="13679000" />
     </task>
     <servers />
   </component>

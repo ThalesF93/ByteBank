@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -29,6 +30,7 @@ public class Customer {
     private String name;
 
     @Column(nullable = false, unique = true, length = 11)
+    @CPF
     private String cpf;
 
     @Column

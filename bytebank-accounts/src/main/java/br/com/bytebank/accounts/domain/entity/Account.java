@@ -22,7 +22,6 @@ import java.util.*;
 public class Account {
 
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
-    private static final Random RANDOM = new Random();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,7 +66,7 @@ public class Account {
     }
 
     private String generateAgencyNumber(){
-        return String.format("%06d", RANDOM.nextInt(900_000) + 100_000);
+        return String.format("%06d", SECURE_RANDOM.nextInt(900_000) + 100_000);
     }
 
 
