@@ -27,11 +27,17 @@ public class AccountRetryScheduler {
 
     private static final int MAX_ATTEMPTS = 5;
 
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 300000)
     @Transactional
     public  void retryPendingAccounts(){
+        log.info("Checking pending account openings for retry");
 
         List<PendingAccountOpening> list = pendingAccountRepository.findByProcessedFalse();
+
+        if (list.isEmpty()){
+            log.info("No pending account found");
+            return;
+        }
 
         for (PendingAccountOpening pendingOpening : list){
             AccountRequestDTO requestDTO = new AccountRequestDTO(pendingOpening.getClientId());
