@@ -10,7 +10,7 @@ subprojects {
 
     group = 'com.bytebank'
     version = '1.0.0'
-    sourceCompatibility = '24'
+    sourceCompatibility = '21'
 
     repositories {
         mavenCentral()
