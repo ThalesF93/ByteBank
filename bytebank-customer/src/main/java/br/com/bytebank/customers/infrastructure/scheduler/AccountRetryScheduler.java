@@ -1,4 +1,4 @@
-package br.com.bytebank.customers.infrastructure.openfeign.scheduler;
+package br.com.bytebank.customers.infrastructure.scheduler;
 
 
 import br.com.bytebank.customers.domain.entity.PendingAccountOpening;
@@ -27,7 +27,7 @@ public class AccountRetryScheduler {
 
     private static final int MAX_ATTEMPTS = 5;
 
-    @Scheduled(fixedDelay = 300000)
+    @Scheduled(initialDelay = 30000, fixedDelay = 300000)
     @Transactional
     public  void retryPendingAccounts(){
         log.info("Checking pending account openings for retry");
