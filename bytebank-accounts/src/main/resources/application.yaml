@@ -20,3 +20,15 @@ spring:
     password: ${DB_PASSWORD}
 server:
   port: 8082
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    prefer-ip-address: true
+logging:
+  structured:
+    format:
+      file: logstash
+  file:
+    name: logs/accounts.json
