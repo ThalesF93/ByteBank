@@ -50,6 +50,13 @@ services:
       timeout: 5s
       retries: 5
 
+  eureka-server:
+    build:
+      context: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+
   bytebank-accounts:
     build:
       context: ./bytebank-accounts
@@ -57,6 +64,8 @@ services:
     depends_on:
       accounts-db:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://accounts-db:5432/accounts_db
       SPRING_DATASOURCE_USERNAME: postgres
@@ -71,6 +80,8 @@ services:
     depends_on:
       customer-db:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://customer-db:5432/CUSTOMER_DB
       SPRING_DATASOURCE_USERNAME: postgres
@@ -85,6 +96,8 @@ services:
     depends_on:
       transactions-db:
         condition: service_healthy
+      eureka-server:
+        condition: service_started
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://transactions-db:5432/transactions_db
       SPRING_DATASOURCE_USERNAME: postgres
