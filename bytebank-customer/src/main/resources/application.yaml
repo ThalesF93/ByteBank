@@ -3,7 +3,7 @@ spring:
     problemdetails:
       enabled: false
   application:
-    name: costumers
+    name: bytebank-customer
   jpa:
     hibernate:
       ddl-auto: update

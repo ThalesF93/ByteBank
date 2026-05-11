@@ -8,7 +8,7 @@ spring:
     problemdetails:
       enabled: false
   application:
-    name: accounts
+    name: bytebank-accounts
   jpa:
     hibernate:
       ddl-auto: update
