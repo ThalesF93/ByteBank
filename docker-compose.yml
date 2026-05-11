@@ -56,6 +56,24 @@ services:
     container_name: eureka-server
     ports:
       - "8761:8761"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+
 
   bytebank-accounts:
     build:
@@ -65,7 +83,7 @@ services:
       accounts-db:
         condition: service_healthy
       eureka-server:
-        condition: service_started
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://accounts-db:5432/accounts_db
       SPRING_DATASOURCE_USERNAME: postgres
@@ -81,7 +99,7 @@ services:
       customer-db:
         condition: service_healthy
       eureka-server:
-        condition: service_started
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://customer-db:5432/CUSTOMER_DB
       SPRING_DATASOURCE_USERNAME: postgres
@@ -97,7 +115,7 @@ services:
       transactions-db:
         condition: service_healthy
       eureka-server:
-        condition: service_started
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://transactions-db:5432/transactions_db
       SPRING_DATASOURCE_USERNAME: postgres
