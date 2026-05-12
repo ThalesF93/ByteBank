@@ -3,7 +3,7 @@ package br.com.bytebank.customers.infrastructure.scheduler;
 
 import br.com.bytebank.customers.domain.entity.PendingAccountOpening;
 import br.com.bytebank.customers.domain.enums.AccountStatus;
-import br.com.bytebank.customers.infrastructure.openfeign.dtos.requests.AccountRequestDTO;
+import br.com.bytebank.customers.api.dtos.client.requests.AccountRequestDTO;
 import br.com.bytebank.customers.infrastructure.feignclient.AccountClient;
 import br.com.bytebank.customers.infrastructure.repositories.CustomerRepository;
 import br.com.bytebank.customers.infrastructure.repositories.PendingAccountRepository;

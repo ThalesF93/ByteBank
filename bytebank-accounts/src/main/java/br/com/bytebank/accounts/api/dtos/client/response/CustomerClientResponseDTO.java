@@ -1,4 +1,4 @@
-package br.com.bytebank.accounts.infrastructure.openfeign.dto.response;
+package br.com.bytebank.accounts.api.dtos.client.response;
 
 import java.util.UUID;
 

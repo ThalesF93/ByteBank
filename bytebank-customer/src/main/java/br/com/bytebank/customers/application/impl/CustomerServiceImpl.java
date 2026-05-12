@@ -12,7 +12,7 @@ import br.com.bytebank.customers.domain.enums.CustomerStatus;
 import br.com.bytebank.customers.domain.exception.AccountNotCreatedException;
 import br.com.bytebank.customers.domain.exception.ClienteJaExistenteException;
 import br.com.bytebank.customers.domain.exception.CustomerNotFoundException;
-import br.com.bytebank.customers.infrastructure.openfeign.dtos.requests.AccountRequestDTO;
+import br.com.bytebank.customers.api.dtos.client.requests.AccountRequestDTO;
 import br.com.bytebank.customers.infrastructure.feignclient.AccountClient;
 import br.com.bytebank.customers.infrastructure.repositories.CustomerRepository;
 import br.com.bytebank.customers.infrastructure.repositories.PendingAccountRepository;
