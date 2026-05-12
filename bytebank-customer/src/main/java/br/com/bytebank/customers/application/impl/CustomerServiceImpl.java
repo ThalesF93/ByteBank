@@ -19,6 +19,8 @@ import br.com.bytebank.customers.infrastructure.repositories.PendingAccountRepos
 import br.com.bytebank.customers.api.dtos.responses.CustomerResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
+    @CacheEvict(value = {"account-status", "customers-by-id"}, allEntries = true)
     public CustomerResponseDTO createCustomer(CustomerRequestDTO customerRequestDTO){
         checkDuplicateCPF(customerRequestDTO);
         // BeanUtils.copyProperties(customerRequestDTO, customerEntity);
@@ -64,21 +67,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     }
 
-    private static Customer dtoToEntity(CustomerRequestDTO customerRequestDTO) {
-        var customerEntity = new Customer();
-        customerEntity.setName(customerRequestDTO.name());
-        customerEntity.setCpf(customerRequestDTO.cpf());
-        customerEntity.setAge(customerRequestDTO.age());
-        customerEntity.setEmail(customerRequestDTO.email());
-        customerEntity.setAddress(customerRequestDTO.address());
 
-
-
-        customerEntity.setCustomerStatus(CustomerStatus.ACTIVE);
-        return customerEntity;
-    }
 
     @Override
+    @Cacheable(value = "account-status", key = "#uuid")
     public PendingAccountStatusResponse checkAccountStatus(UUID uuid){
         var pending = pendingAccountRepository.existsByClientId(uuid);
 
@@ -98,6 +90,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @CacheEvict(value = "customers-by-id", allEntries = true)
     public CustomerUpdateDTO updateCustomer(UUID uuid, CustomerUpdateDTO customerUpdateDTO) {
         var customer = repository.findById(uuid).orElseThrow(
                 ()-> new CustomerNotFoundException("Customer id not found" + uuid)
@@ -113,6 +106,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Cacheable(value = "customers-by-id", key = "#id")
     public CustomerClientResponseDTO findCustomerById(UUID id) {
         var customer = repository.findById(id).orElseThrow(
                 ()-> new CustomerNotFoundException("Customer Not found. ID= " + id)
@@ -132,6 +126,20 @@ public class CustomerServiceImpl implements CustomerService {
         if (repository.existsByCpf(cpf)){
             throw new ClienteJaExistenteException("Customer with cpf " + cpf + " already exists");
         }
+    }
+
+    private static Customer dtoToEntity(CustomerRequestDTO customerRequestDTO) {
+        var customerEntity = new Customer();
+        customerEntity.setName(customerRequestDTO.name());
+        customerEntity.setCpf(customerRequestDTO.cpf());
+        customerEntity.setAge(customerRequestDTO.age());
+        customerEntity.setEmail(customerRequestDTO.email());
+        customerEntity.setAddress(customerRequestDTO.address());
+
+
+
+        customerEntity.setCustomerStatus(CustomerStatus.ACTIVE);
+        return customerEntity;
     }
 
 }

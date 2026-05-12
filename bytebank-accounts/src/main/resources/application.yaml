@@ -4,6 +4,16 @@ spring:
       httpclient:
         hc5:
           enabled: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+  data:
+    redis:
+      host: ${REDIS_HOST:redis}
+      port: 6379
+  cache:
+    type: redis
+    redis:
+      time-to-live: 300000
   mvc:
     problemdetails:
       enabled: false
