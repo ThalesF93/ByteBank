@@ -2,8 +2,6 @@ spring:
   mvc:
     problemdetails:
       enabled: false
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
   data:
     redis:
       host: ${REDIS_HOST:redis}
