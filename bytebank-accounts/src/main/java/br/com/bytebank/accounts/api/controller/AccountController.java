@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -62,8 +63,14 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping("/balance")
-    public ResponseEntity<BalanceResponseDTO> getBalance(UUID id){
+    @GetMapping("/balance/{id}")
+    public ResponseEntity<BalanceResponseDTO> getBalance(@PathVariable UUID id){
         return ResponseEntity.ok(accountService.getBalance(id));
     }
+
+    @GetMapping("/customer/{id}")
+    public ResponseEntity<List<AccountResponseDTO>> getListAccountsByCustomer(@PathVariable UUID id){
+        return ResponseEntity.ok(accountService.listAccountByCostumer(id));
+    }
+
 }
