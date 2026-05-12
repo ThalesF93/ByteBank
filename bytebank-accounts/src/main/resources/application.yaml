@@ -4,8 +4,7 @@ spring:
       httpclient:
         hc5:
           enabled: true
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+
   data:
     redis:
       host: ${REDIS_HOST:redis}
