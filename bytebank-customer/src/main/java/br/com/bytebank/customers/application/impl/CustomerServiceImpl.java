@@ -1,21 +1,22 @@
 package br.com.bytebank.customers.application.impl;
 
 import br.com.bytebank.customers.api.dtos.requests.CustomerRequestDTO;
+import br.com.bytebank.customers.api.dtos.requests.CustomerUpdateDTO;
+import br.com.bytebank.customers.api.dtos.responses.CustomerClientResponseDTO;
 import br.com.bytebank.customers.api.dtos.responses.CustomerShortResponseDTO;
 import br.com.bytebank.customers.api.dtos.responses.PendingAccountStatusResponse;
 import br.com.bytebank.customers.application.service.CustomerService;
 import br.com.bytebank.customers.domain.entity.Customer;
-import br.com.bytebank.customers.domain.entity.PendingAccountOpening;
 import br.com.bytebank.customers.domain.enums.AccountStatus;
 import br.com.bytebank.customers.domain.enums.CustomerStatus;
 import br.com.bytebank.customers.domain.exception.AccountNotCreatedException;
 import br.com.bytebank.customers.domain.exception.ClienteJaExistenteException;
+import br.com.bytebank.customers.domain.exception.CustomerNotFoundException;
 import br.com.bytebank.customers.infrastructure.openfeign.dtos.requests.AccountRequestDTO;
 import br.com.bytebank.customers.infrastructure.feignclient.AccountClient;
 import br.com.bytebank.customers.infrastructure.repositories.CustomerRepository;
 import br.com.bytebank.customers.infrastructure.repositories.PendingAccountRepository;
 import br.com.bytebank.customers.api.dtos.responses.CustomerResponseDTO;
-import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -94,6 +95,29 @@ public class CustomerServiceImpl implements CustomerService {
     public Page<CustomerShortResponseDTO> obterClientes(Pageable pageable){
         return repository.findAll(pageable)
                 .map(converteParaClienteResumoResponseDTO());
+    }
+
+    @Override
+    public CustomerUpdateDTO updateCustomer(UUID uuid, CustomerUpdateDTO customerUpdateDTO) {
+        var customer = repository.findById(uuid).orElseThrow(
+                ()-> new CustomerNotFoundException("Customer id not found" + uuid)
+        );
+
+        customer.setName(customerUpdateDTO.name());
+        customer.setAddress(customerUpdateDTO.address());
+        customer.setEmail(customerUpdateDTO.email());
+        repository.save(customer);
+
+        return new CustomerUpdateDTO(customerUpdateDTO.name(), customerUpdateDTO.email(), customerUpdateDTO.address());
+
+    }
+
+    @Override
+    public CustomerClientResponseDTO findCustomerById(UUID id) {
+        var customer = repository.findById(id).orElseThrow(
+                ()-> new CustomerNotFoundException("Customer Not found. ID= " + id)
+        );
+        return new CustomerClientResponseDTO(customer.getId(), customer.getName());
     }
 
     private static Function<Customer, CustomerShortResponseDTO> converteParaClienteResumoResponseDTO() {

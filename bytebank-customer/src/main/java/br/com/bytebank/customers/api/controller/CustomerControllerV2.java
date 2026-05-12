@@ -1,10 +1,8 @@
 package br.com.bytebank.customers.api.controller;
 
 import br.com.bytebank.customers.api.dtos.requests.CustomerRequestDTO;
-import br.com.bytebank.customers.api.dtos.responses.CustomerResponseDTO;
-import br.com.bytebank.customers.api.dtos.responses.CustomerShortResponseDTO;
-import br.com.bytebank.customers.api.dtos.responses.PagedResponse;
-import br.com.bytebank.customers.api.dtos.responses.PendingAccountStatusResponse;
+import br.com.bytebank.customers.api.dtos.requests.CustomerUpdateDTO;
+import br.com.bytebank.customers.api.dtos.responses.*;
 import br.com.bytebank.customers.application.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -54,6 +52,17 @@ public class CustomerControllerV2 {
         var costumerPage = service.obterClientes(pageable);
 
         return new PagedResponse<>(costumerPage);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<CustomerUpdateDTO> updateCustomer(@PathVariable UUID id, @Valid @RequestBody CustomerUpdateDTO dto){
+        log.info("Updating customer from id={}", id);
+        return ResponseEntity.ok(service.updateCustomer(id, dto));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerClientResponseDTO> findCustomerById(@PathVariable UUID id){
+        return ResponseEntity.ok(service.findCustomerById(id));
     }
 }
 

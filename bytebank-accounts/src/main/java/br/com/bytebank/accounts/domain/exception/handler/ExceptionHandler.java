@@ -3,6 +3,7 @@ package br.com.bytebank.accounts.domain.exception.handler;
 import br.com.bytebank.accounts.domain.exception.AccountNotFoundException;
 import br.com.bytebank.accounts.domain.exception.CustomerNotFoundException;
 import br.com.bytebank.accounts.domain.exception.SameAccountException;
+import br.com.bytebank.accounts.domain.exception.ServiceUnavailableException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.validation.FieldError;
@@ -85,5 +86,19 @@ public class ExceptionHandler {
                     validationErrors.put(fieldName, errorMessage);
                 });
         return validationErrors;
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(ServiceUnavailableException.class)
+    public ProblemDetail handleSeviceUnavailableException(final Throwable exception){
+
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.SERVICE_UNAVAILABLE,
+                exception.getMessage()
+        );
+
+        problemDetail.setTitle("Customer service unavailable");
+        problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/conflict"));
+
+        return problemDetail;
     }
 }

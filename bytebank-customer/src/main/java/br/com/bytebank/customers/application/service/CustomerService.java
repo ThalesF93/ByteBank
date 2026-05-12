@@ -1,6 +1,8 @@
 package br.com.bytebank.customers.application.service;
 
 import br.com.bytebank.customers.api.dtos.requests.CustomerRequestDTO;
+import br.com.bytebank.customers.api.dtos.requests.CustomerUpdateDTO;
+import br.com.bytebank.customers.api.dtos.responses.CustomerClientResponseDTO;
 import br.com.bytebank.customers.api.dtos.responses.CustomerResponseDTO;
 import br.com.bytebank.customers.api.dtos.responses.CustomerShortResponseDTO;
 import br.com.bytebank.customers.api.dtos.responses.PendingAccountStatusResponse;
@@ -16,4 +18,8 @@ public interface CustomerService {
     PendingAccountStatusResponse checkAccountStatus(UUID uuid);
 
     Page<CustomerShortResponseDTO> obterClientes(Pageable pageable);
+
+    CustomerUpdateDTO updateCustomer(UUID id, CustomerUpdateDTO customerRequestDTO);
+
+    CustomerClientResponseDTO findCustomerById(UUID id);
 }

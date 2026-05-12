@@ -4,18 +4,25 @@ import br.com.bytebank.accounts.api.dtos.request.AccountRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
+import br.com.bytebank.accounts.api.dtos.response.BalanceResponseDTO;
 import br.com.bytebank.accounts.application.service.AccountService;
 import br.com.bytebank.accounts.domain.entity.Account;
 import br.com.bytebank.accounts.domain.exception.AccountNotFoundException;
 import br.com.bytebank.accounts.domain.exception.ClosingAccountException;
+import br.com.bytebank.accounts.domain.exception.CustomerNotFoundException;
 import br.com.bytebank.accounts.domain.exception.InsufficientBalanceException;
+import br.com.bytebank.accounts.infrastructure.feignclient.CustomerClient;
+import br.com.bytebank.accounts.infrastructure.openfeign.dto.response.CustomerClientResponseDTO;
 import br.com.bytebank.accounts.infrastructure.repositories.AccountRepository;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -25,6 +32,8 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
+
+    private final CustomerClient customerClient;
 
     private final AccountRepository accountRepository;
 
@@ -77,11 +86,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void debit(WithdrawRequestDTO withdrawRequestDTO) {
-       Account account = getAccount(withdrawRequestDTO.accountId());
-       balanceValidation(account, withdrawRequestDTO.amount());
+        Account account = getAccount(withdrawRequestDTO.accountId());
+        balanceValidation(account, withdrawRequestDTO.amount());
 
-       account.setBalance(account.getBalance().subtract(withdrawRequestDTO.amount()));
-       accountRepository.save(account);
+        account.setBalance(account.getBalance().subtract(withdrawRequestDTO.amount()));
+        accountRepository.save(account);
     }
 
     @Override
@@ -92,6 +101,29 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.save(account);
     }
 
+    @Override
+    public List<AccountResponseDTO> listAccountByCostumer(UUID id) {
+        List<Account> accounts = List.of();
+        CustomerClientResponseDTO customer;
+       
+        try {
+           customer = customerClient.findCustomerById(id);
+        } catch (FeignException e) {
+            throw new CustomerNotFoundException("Customer not found with id: " + id);
+        }
+        return accountRepository.findAccountsByCustomerId(customer.id())
+                .stream()
+                .map(account -> new AccountResponseDTO(account.getId(), account.getCustomerId(), account.getAgency(), account.getBalance())).toList();
+    }
+
+    @Override
+    public BalanceResponseDTO getBalance(UUID id) {
+        var account = accountRepository.findById(id).orElseThrow(
+                ()-> new AccountNotFoundException("Account not found")
+        );
+
+        return new BalanceResponseDTO(account.getBalance());
+    }
 
     protected void balanceValidation(Account account, BigDecimal amount) {
         if (isBalanceInsufficient(account, amount)){

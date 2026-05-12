@@ -9,4 +9,6 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
 
     boolean existsByCpf(String cpf);
+
+    UUID id(UUID id);
 }

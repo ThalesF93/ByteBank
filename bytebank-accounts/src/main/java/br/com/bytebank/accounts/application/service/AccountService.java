@@ -4,6 +4,9 @@ import br.com.bytebank.accounts.api.dtos.request.AccountRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
+import br.com.bytebank.accounts.api.dtos.response.BalanceResponseDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,5 +24,10 @@ public interface AccountService {
     void debit(WithdrawRequestDTO withdrawRequestDTO);
 
     void credit(DepositRequestDTO depositRequestDTO);
+
+    List<AccountResponseDTO> listAccountByCostumer(UUID id);
+
+    BalanceResponseDTO getBalance(UUID id);
+
 
 }

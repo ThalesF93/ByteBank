@@ -4,6 +4,7 @@ import br.com.bytebank.accounts.api.dtos.request.AccountRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
+import br.com.bytebank.accounts.api.dtos.response.BalanceResponseDTO;
 import br.com.bytebank.accounts.application.impl.AccountServiceImpl;
 import br.com.bytebank.accounts.application.service.AccountService;
 import jakarta.validation.Valid;
@@ -59,5 +60,10 @@ public class AccountController {
     public ResponseEntity<Void> credit(@RequestBody DepositRequestDTO depositRequestDTO){
         accountService.credit(depositRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/balance")
+    public ResponseEntity<BalanceResponseDTO> getBalance(UUID id){
+        return ResponseEntity.ok(accountService.getBalance(id));
     }
 }
