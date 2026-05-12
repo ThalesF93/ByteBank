@@ -15,12 +15,14 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     runtimeOnly 'org.postgresql:postgresql'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    // Source: https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:5.0.1")
-    // Source: https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-retry
     implementation("io.github.resilience4j:resilience4j-retry:2.4.0")
     implementation 'io.github.openfeign:feign-hc5:13.5'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 }
 
 test {

@@ -12,7 +12,7 @@ import br.com.bytebank.accounts.domain.exception.ClosingAccountException;
 import br.com.bytebank.accounts.domain.exception.CustomerNotFoundException;
 import br.com.bytebank.accounts.domain.exception.InsufficientBalanceException;
 import br.com.bytebank.accounts.infrastructure.feignclient.CustomerClient;
-import br.com.bytebank.accounts.infrastructure.openfeign.dto.response.CustomerClientResponseDTO;
+import br.com.bytebank.accounts.api.dtos.client.response.CustomerClientResponseDTO;
 import br.com.bytebank.accounts.infrastructure.repositories.AccountRepository;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
