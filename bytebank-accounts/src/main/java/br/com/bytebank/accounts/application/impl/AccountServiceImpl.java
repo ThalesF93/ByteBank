@@ -17,6 +17,8 @@ import br.com.bytebank.accounts.infrastructure.repositories.AccountRepository;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +51,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Cacheable(value = "accounts", key = "#uuid")
     public AccountResponseDTO findAccountById(UUID uuid){
         var account = accountRepository.findById(uuid)
                 .orElseThrow(()-> new AccountNotFoundException("Account not found"));
@@ -69,6 +72,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Cacheable(value = "accounts-by-balance", key = "'all'")
     public List<AccountResponseDTO> showAccountsByBalance(){
         return accountRepository.findAll()
                 .stream()
@@ -83,6 +87,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @CacheEvict(value ={"accounts", "accounts-by-customer", "accounts-by-balance", "balance"}, allEntries = true)
     public void debit(WithdrawRequestDTO withdrawRequestDTO) {
         Account account = getAccount(withdrawRequestDTO.accountId());
         balanceValidation(account, withdrawRequestDTO.amount());
@@ -92,6 +97,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @CacheEvict(value ={"accounts", "accounts-by-customer", "accounts-by-balance", "balance"}, allEntries = true)
     public void credit(DepositRequestDTO depositRequestDTO) {
         Account account = getAccount(depositRequestDTO.accountId());
 
@@ -100,6 +106,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Cacheable(value = "accounts-by-customer", key = "#id")
     public List<AccountResponseDTO> listAccountByCostumer(UUID id) {
         List<Account> accounts = List.of();
         CustomerClientResponseDTO customer;
@@ -115,6 +122,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Cacheable(value = "balance", key = "#id")
     public BalanceResponseDTO getBalance(UUID id) {
         var account = accountRepository.findById(id).orElseThrow(
                 ()-> new AccountNotFoundException("Account not found")

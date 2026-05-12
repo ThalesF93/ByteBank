@@ -5,6 +5,7 @@ package br.com.bytebank.customers.api.dtos.responses;
 import br.com.bytebank.customers.domain.entity.Customer;
 import br.com.bytebank.customers.domain.enums.CustomerStatus;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public record  CustomerResponseDTO(
         String editDate,
 
         String message
-) {
+) implements Serializable {
     public static CustomerResponseDTO accountCreated(Customer entity) {
         return new CustomerResponseDTO(
                 entity.getId(),

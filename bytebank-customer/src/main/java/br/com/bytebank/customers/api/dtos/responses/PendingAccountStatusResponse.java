@@ -4,6 +4,7 @@ package br.com.bytebank.customers.api.dtos.responses;
 
 import br.com.bytebank.customers.domain.enums.AccountStatus;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 public record PendingAccountStatusResponse(
@@ -12,5 +13,5 @@ public record PendingAccountStatusResponse(
         AccountStatus accountStatus,
 
         String message
-        ) {
+        ) implements Serializable {
 }

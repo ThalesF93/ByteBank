@@ -2,6 +2,7 @@ package br.com.bytebank.accounts.api.dtos.response;
 
 import br.com.bytebank.accounts.domain.entity.Account;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ public record AccountResponseDTO(
         String agencyNumber,
 
         BigDecimal balance
-) {
+) implements Serializable {
     public AccountResponseDTO(Account account) {
         this(
                 account.getId(),
