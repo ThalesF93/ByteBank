@@ -29,5 +29,7 @@ public interface AccountService {
 
     BalanceResponseDTO getBalance(UUID id);
 
+    boolean existsByCustomer(UUID id);
+
 
 }

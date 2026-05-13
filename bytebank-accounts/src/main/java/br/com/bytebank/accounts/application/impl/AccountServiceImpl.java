@@ -142,4 +142,9 @@ public class AccountServiceImpl implements AccountService {
         return account.getBalance().compareTo(amount) < 0;
     }
 
+    @Override
+    public boolean existsByCustomer(UUID id){
+        return accountRepository.existsByCustomerId(id);
+    }
+
 }
