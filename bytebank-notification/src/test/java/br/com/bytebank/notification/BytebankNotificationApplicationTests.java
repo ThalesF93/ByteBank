@@ -1,4 +1,4 @@
-package br.com.bytebank.bytebanknotification;
+package br.com.bytebank.notification;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -189,6 +189,22 @@ services:
     ports:
       - "8083:8083"
 
+  bytebank-notification:
+    build:
+      context: ./bytebank-notification
+    container_name: bytebank-notification
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      MAIL_USERNAME: thalesgarcezf@gmail.com
+      MAIL_PASSWORD: qaco ssoi kiyy xjtq
+    ports:
+      - "8084:8084"
+
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: pgadmin

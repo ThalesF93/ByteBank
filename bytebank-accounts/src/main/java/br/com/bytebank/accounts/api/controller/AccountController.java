@@ -1,5 +1,6 @@
 package br.com.bytebank.accounts.api.controller;
 
+import br.com.bytebank.accounts.api.dtos.client.response.CustomerClientResponseDTO;
 import br.com.bytebank.accounts.api.dtos.request.AccountRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
@@ -71,6 +72,11 @@ public class AccountController {
     @GetMapping("/customer/{id}")
     public ResponseEntity<List<AccountResponseDTO>> getListAccountsByCustomer(@PathVariable UUID id){
         return ResponseEntity.ok(accountService.listAccountByCostumer(id));
+    }
+
+    @GetMapping("feign/customer/{id}")
+    public ResponseEntity<CustomerClientResponseDTO> findCustomerByAccountId(@PathVariable UUID id){
+        return ResponseEntity.ok(accountService.findCustomerByAccountId(id));
     }
 
 }

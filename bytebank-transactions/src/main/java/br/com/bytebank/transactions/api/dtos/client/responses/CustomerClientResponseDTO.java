@@ -1,4 +1,4 @@
-package br.com.bytebank.accounts.api.dtos.client.response;
+package br.com.bytebank.transactions.api.dtos.client.responses;
 
 import java.io.Serializable;
 import java.util.UUID;

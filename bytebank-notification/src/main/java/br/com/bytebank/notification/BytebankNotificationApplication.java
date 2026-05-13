@@ -1,4 +1,4 @@
-package br.com.bytebank.bytebanknotification;
+package br.com.bytebank.notification;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
