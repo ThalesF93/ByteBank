@@ -37,7 +37,7 @@ public class AccountEventListener {
     @RabbitListener(queues = RabbitMQConfig.QUEUE_ACCOUNT_FAILED)
     public void onAccountFailed(AccountFailedEvent event) {
         customerRepository.findById(event.customerId()).ifPresent(customer -> {
-            customer.setAccountStatus(AccountStatus.FAILED); // adiciona esse enum
+            customer.setAccountStatus(AccountStatus.FAILED);
             customerRepository.save(customer);
             log.error("Account creation failed. Customer marked as FAILED. customerId={}",
                     event.customerId());

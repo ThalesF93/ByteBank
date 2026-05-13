@@ -41,7 +41,6 @@ public class CustomerEventListener {
     public void onCustomerCreatedFailed(CustomerCreatedEvent event) {
         log.error("FAILED to open account after retries. customerId={}", event.customerId());
 
-        // publica evento de falha pro customer atualizar status pra FAILED
         eventPublisher.publishAccountFailed(event.customerId());
     }
 }
