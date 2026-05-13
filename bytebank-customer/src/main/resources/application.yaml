@@ -7,6 +7,14 @@ spring:
     port: 5672
     username: guest
     password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 5
+          initial-interval: 5000
+          multiplier: 3
+          max-interval: 10000
   data:
     redis:
       host: ${REDIS_HOST:redis}

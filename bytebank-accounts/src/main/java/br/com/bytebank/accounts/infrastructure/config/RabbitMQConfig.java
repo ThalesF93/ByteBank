@@ -10,15 +10,24 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String QUEUE_ACCOUNT_OPENED      = "account.opened";
-    public static final String EXCHANGE_ACCOUNT          = "account.exchange";
+    public static final String QUEUE_ACCOUNT_OPENED       = "account.opened";
+    public static final String QUEUE_ACCOUNT_FAILED       = "account.failed";
+    public static final String EXCHANGE_ACCOUNT           = "account.exchange";
     public static final String ROUTING_KEY_ACCOUNT_OPENED = "account.opened";
+    public static final String ROUTING_KEY_ACCOUNT_FAILED = "account.failed";
 
-    public static final String QUEUE_CUSTOMER_CREATED = "customer.created";
+    // fila que ele CONSOME (só o nome)
+    public static final String QUEUE_CUSTOMER_CREATED    = "customer.created";
+    public static final String QUEUE_CUSTOMER_CREATED_DLQ = "customer.created.dlq";
 
     @Bean
     public Queue accountOpenedQueue() {
-        return new Queue(QUEUE_ACCOUNT_OPENED, true);
+        return QueueBuilder.durable(QUEUE_ACCOUNT_OPENED).build();
+    }
+
+    @Bean
+    public Queue accountFailedQueue() {
+        return QueueBuilder.durable(QUEUE_ACCOUNT_FAILED).build();
     }
 
     @Bean
@@ -29,10 +38,17 @@ public class RabbitMQConfig {
     @Bean
     public Binding accountOpenedBinding(Queue accountOpenedQueue,
                                         DirectExchange accountExchange) {
-        return BindingBuilder
-                .bind(accountOpenedQueue)
+        return BindingBuilder.bind(accountOpenedQueue)
                 .to(accountExchange)
                 .with(ROUTING_KEY_ACCOUNT_OPENED);
+    }
+
+    @Bean
+    public Binding accountFailedBinding(Queue accountFailedQueue,
+                                        DirectExchange accountExchange) {
+        return BindingBuilder.bind(accountFailedQueue)
+                .to(accountExchange)
+                .with(ROUTING_KEY_ACCOUNT_FAILED);
     }
 
     @Bean

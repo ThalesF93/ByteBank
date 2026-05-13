@@ -3,21 +3,16 @@ package br.com.bytebank.customers.application.impl;
 import br.com.bytebank.customers.api.dtos.requests.CustomerRequestDTO;
 import br.com.bytebank.customers.api.dtos.requests.CustomerUpdateDTO;
 import br.com.bytebank.customers.api.dtos.responses.CustomerClientResponseDTO;
+import br.com.bytebank.customers.api.dtos.responses.CustomerResponseDTO;
 import br.com.bytebank.customers.api.dtos.responses.CustomerShortResponseDTO;
-import br.com.bytebank.customers.api.dtos.responses.PendingAccountStatusResponse;
 import br.com.bytebank.customers.application.service.CustomerService;
 import br.com.bytebank.customers.domain.entity.Customer;
 import br.com.bytebank.customers.domain.enums.AccountStatus;
 import br.com.bytebank.customers.domain.enums.CustomerStatus;
-import br.com.bytebank.customers.domain.exception.AccountNotCreatedException;
 import br.com.bytebank.customers.domain.exception.ClienteJaExistenteException;
 import br.com.bytebank.customers.domain.exception.CustomerNotFoundException;
-import br.com.bytebank.customers.api.dtos.client.requests.AccountRequestDTO;
-import br.com.bytebank.customers.infrastructure.feignclient.AccountClient;
 import br.com.bytebank.customers.infrastructure.messaging.CustomerEventPublisher;
 import br.com.bytebank.customers.infrastructure.repositories.CustomerRepository;
-import br.com.bytebank.customers.infrastructure.repositories.PendingAccountRepository;
-import br.com.bytebank.customers.api.dtos.responses.CustomerResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
@@ -55,21 +50,6 @@ public class CustomerServiceImpl implements CustomerService {
         return CustomerResponseDTO.accountPending(customerEntity);
     }
 
-
-
-    @Override
-    @Cacheable(value = "account-status", key = "#uuid")
-    public PendingAccountStatusResponse checkAccountStatus(UUID uuid){
-        var pending = pendingAccountRepository.existsByClientId(uuid);
-
-        if (pending){
-            return new PendingAccountStatusResponse(
-                    uuid, AccountStatus.PENDING, "Opening account still in process, try again later"
-            );
-        }else return new PendingAccountStatusResponse(
-                uuid, AccountStatus.CREATED, "Account created successfully"
-        );
-    }
 
     @Override
     public Page<CustomerShortResponseDTO> obterClientes(Pageable pageable){
