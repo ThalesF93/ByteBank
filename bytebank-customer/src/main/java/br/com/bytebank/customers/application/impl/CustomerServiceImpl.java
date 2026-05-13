@@ -14,6 +14,7 @@ import br.com.bytebank.customers.domain.exception.ClienteJaExistenteException;
 import br.com.bytebank.customers.domain.exception.CustomerNotFoundException;
 import br.com.bytebank.customers.api.dtos.client.requests.AccountRequestDTO;
 import br.com.bytebank.customers.infrastructure.feignclient.AccountClient;
+import br.com.bytebank.customers.infrastructure.messaging.CustomerEventPublisher;
 import br.com.bytebank.customers.infrastructure.repositories.CustomerRepository;
 import br.com.bytebank.customers.infrastructure.repositories.PendingAccountRepository;
 import br.com.bytebank.customers.api.dtos.responses.CustomerResponseDTO;
@@ -35,36 +36,23 @@ import java.util.function.Function;
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository repository;
-    private final AccountClient accountClient;
-    private final PendingAccountRepository pendingAccountRepository;
-
+    private final CustomerEventPublisher eventPublisher;
 
     @Override
     @Transactional
     @CacheEvict(value = {"account-status", "customers-by-id"}, allEntries = true)
     public CustomerResponseDTO createCustomer(CustomerRequestDTO customerRequestDTO){
         checkDuplicateCPF(customerRequestDTO);
-        // BeanUtils.copyProperties(customerRequestDTO, customerEntity);
 
         var customerEntity = dtoToEntity(customerRequestDTO);
         customerEntity.setAccountStatus(AccountStatus.PENDING);
         repository.save(customerEntity);
 
+        eventPublisher.publishCustomerCreated(customerEntity.getId());
+
         log.info("Registered customer. customerId={}", customerEntity.getId());
 
-        try{
-            accountClient.openAccount(new AccountRequestDTO(customerEntity.getId()));
-            customerEntity.setAccountStatus(AccountStatus.CREATED);
-            repository.save(customerEntity);
-            log.info("Account created successfully. customerId={}", customerEntity.getId());
-
-            return CustomerResponseDTO.accountCreated(customerEntity);
-
-        } catch (AccountNotCreatedException e){
-            log.warn("Account service unavailable, account pending. customerId={}", customerEntity.getId());
-            return CustomerResponseDTO.accountPending(customerEntity);
-        }
-
+        return CustomerResponseDTO.accountPending(customerEntity);
     }
 
 
