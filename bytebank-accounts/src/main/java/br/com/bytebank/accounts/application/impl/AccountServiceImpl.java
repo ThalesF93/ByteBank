@@ -112,7 +112,7 @@ public class AccountServiceImpl implements AccountService {
        
         try {
            customer = customerClient.findCustomerById(id);
-        } catch (FeignException e) {
+        } catch (FeignException.NotFound e) {
             throw new CustomerNotFoundException("Customer not found with id: " + id);
         }
         return accountRepository.findAccountsByCustomerId(customer.id())
