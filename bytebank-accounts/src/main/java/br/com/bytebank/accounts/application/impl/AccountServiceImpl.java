@@ -86,6 +86,22 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public CustomerClientResponseDTO findCustomerByAccountId(UUID id){
+        var account = accountRepository.findById(id)
+                .orElseThrow(() -> new AccountNotFoundException("Account not found"));
+
+        CustomerClientResponseDTO customer;
+        try {
+            customer = customerClient.findCustomerById((account.getCustomerId()));
+        } catch (FeignException.NotFound e) {
+            throw new CustomerNotFoundException("Customer not found id= " + account.getCustomerId());
+        }
+
+        return new CustomerClientResponseDTO(customer.id(), customer.name(), customer.email());
+    }
+
+
+    @Override
     @CacheEvict(value ={"accounts", "accounts-by-customer", "accounts-by-balance", "balance"}, allEntries = true)
     public void debit(WithdrawRequestDTO withdrawRequestDTO) {
         Account account = getAccount(withdrawRequestDTO.accountId());
@@ -145,5 +161,7 @@ public class AccountServiceImpl implements AccountService {
     public boolean existsByCustomer(UUID id){
         return accountRepository.existsByCustomerId(id);
     }
+
+
 
 }

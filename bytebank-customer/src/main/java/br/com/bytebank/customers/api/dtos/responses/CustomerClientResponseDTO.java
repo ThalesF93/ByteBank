@@ -6,6 +6,8 @@ import java.util.UUID;
 public record CustomerClientResponseDTO(
         UUID id,
 
-        String name
+        String name,
+
+        String email
 ) implements Serializable {
 }

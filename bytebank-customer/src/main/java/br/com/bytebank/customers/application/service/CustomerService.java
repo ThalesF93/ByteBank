@@ -20,4 +20,5 @@ public interface CustomerService {
     CustomerUpdateDTO updateCustomer(UUID id, CustomerUpdateDTO customerRequestDTO);
 
     CustomerClientResponseDTO findCustomerById(UUID id);
+
 }

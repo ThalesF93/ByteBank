@@ -79,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
         var customer = repository.findById(id).orElseThrow(
                 ()-> new CustomerNotFoundException("Customer Not found. ID= " + id)
         );
-        return new CustomerClientResponseDTO(customer.getId(), customer.getName());
+        return new CustomerClientResponseDTO(customer.getId(), customer.getName(), customer.getEmail());
     }
 
     private static Function<Customer, CustomerShortResponseDTO> converteParaClienteResumoResponseDTO() {

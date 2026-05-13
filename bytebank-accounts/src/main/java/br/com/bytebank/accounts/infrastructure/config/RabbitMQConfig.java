@@ -16,7 +16,7 @@ public class RabbitMQConfig {
     public static final String ROUTING_KEY_ACCOUNT_OPENED = "account.opened";
     public static final String ROUTING_KEY_ACCOUNT_FAILED = "account.failed";
 
-    // fila que ele CONSOME (só o nome)
+
     public static final String QUEUE_CUSTOMER_CREATED    = "customer.created";
     public static final String QUEUE_CUSTOMER_CREATED_DLQ = "customer.created.dlq";
 

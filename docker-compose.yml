@@ -200,6 +200,8 @@ services:
         condition: service_healthy
     environment:
       SPRING_RABBITMQ_HOST: rabbitmq
+      MAIL_USERNAME: thalesgarcezf@gmail.com
+      MAIL_PASSWORD: qaco ssoi kiyy xjtq
     ports:
       - "8084:8084"
 

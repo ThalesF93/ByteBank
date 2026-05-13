@@ -1,5 +1,6 @@
 package br.com.bytebank.accounts.application.service;
 
+import br.com.bytebank.accounts.api.dtos.client.response.CustomerClientResponseDTO;
 import br.com.bytebank.accounts.api.dtos.request.AccountRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
@@ -31,5 +32,5 @@ public interface AccountService {
 
     boolean existsByCustomer(UUID id);
 
-
+    CustomerClientResponseDTO findCustomerByAccountId(UUID id);
 }
