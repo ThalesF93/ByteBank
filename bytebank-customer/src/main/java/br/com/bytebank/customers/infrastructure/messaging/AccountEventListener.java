@@ -2,6 +2,7 @@ package br.com.bytebank.customers.infrastructure.messaging;
 
 import br.com.bytebank.customers.domain.enums.AccountStatus;
 import br.com.bytebank.customers.infrastructure.config.RabbitMQConfig;
+import br.com.bytebank.customers.infrastructure.messaging.event.AccountFailedEvent;
 import br.com.bytebank.customers.infrastructure.messaging.event.AccountOpenedEvent;
 import br.com.bytebank.customers.infrastructure.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,4 +33,13 @@ public class AccountEventListener {
                 () -> log.warn("Customer not found for customerId={}", event.customerId())
         );
     }
-}
+
+    @RabbitListener(queues = RabbitMQConfig.QUEUE_ACCOUNT_FAILED)
+    public void onAccountFailed(AccountFailedEvent event) {
+        customerRepository.findById(event.customerId()).ifPresent(customer -> {
+            customer.setAccountStatus(AccountStatus.FAILED); // adiciona esse enum
+            customerRepository.save(customer);
+            log.error("Account creation failed. Customer marked as FAILED. customerId={}",
+                    event.customerId());
+        });
+}}

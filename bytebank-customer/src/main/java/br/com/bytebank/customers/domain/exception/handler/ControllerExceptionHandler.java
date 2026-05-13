@@ -1,4 +1,4 @@
-package br.com.bytebank.customers.api.controller;
+package br.com.bytebank.customers.domain.exception.handler;
 
 
 import br.com.bytebank.customers.domain.exception.ClienteJaExistenteException;

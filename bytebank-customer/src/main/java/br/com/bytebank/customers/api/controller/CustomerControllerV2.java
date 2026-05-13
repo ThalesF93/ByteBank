@@ -36,13 +36,6 @@ public class CustomerControllerV2 {
                 .body(costumer);
     }
 
-    @GetMapping("/status/{id}")
-    public ResponseEntity<PendingAccountStatusResponse> checkPendingAccount(@PathVariable UUID id){
-        log.info("Checking account status. clientId={}", id);
-        var pending = service.checkAccountStatus(id);
-        return ResponseEntity.ok(pending);
-    }
-
     @GetMapping
     public PagedResponse<CustomerShortResponseDTO> getCostumers(@RequestParam(defaultValue = "0") int page,
                                                                 @RequestParam(defaultValue = "10") int size){

@@ -10,28 +10,38 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String QUEUE_CUSTOMER_CREATED = "customer.created";
-    public static final String EXCHANGE_CUSTOMERS     = "customers.exchange";
+    public static final String QUEUE_CUSTOMER_CREATED       = "customer.created";
+    public static final String QUEUE_CUSTOMER_CREATED_DLQ  = "customer.created.dlq";
+    public static final String EXCHANGE_CUSTOMER            = "customer.exchange";
     public static final String ROUTING_KEY_CUSTOMER_CREATED = "customer.created";
 
+    // filas que ele CONSOME (só os nomes, sem declarar)
     public static final String QUEUE_ACCOUNT_OPENED = "account.opened";
+    public static final String QUEUE_ACCOUNT_FAILED = "account.failed";
 
     @Bean
     public Queue customerCreatedQueue() {
-        return new Queue(QUEUE_CUSTOMER_CREATED, true);
+        return QueueBuilder.durable(QUEUE_CUSTOMER_CREATED)
+                .withArgument("x-dead-letter-exchange", "")
+                .withArgument("x-dead-letter-routing-key", QUEUE_CUSTOMER_CREATED_DLQ)
+                .build();
     }
 
     @Bean
-    public DirectExchange customersExchange() {
-        return new DirectExchange(EXCHANGE_CUSTOMERS);
+    public Queue customerCreatedDlq() {
+        return QueueBuilder.durable(QUEUE_CUSTOMER_CREATED_DLQ).build();
+    }
+
+    @Bean
+    public DirectExchange customerExchange() {
+        return new DirectExchange(EXCHANGE_CUSTOMER);
     }
 
     @Bean
     public Binding customerCreatedBinding(Queue customerCreatedQueue,
-                                          DirectExchange customersExchange) {
-        return BindingBuilder
-                .bind(customerCreatedQueue)
-                .to(customersExchange)
+                                          DirectExchange customerExchange) {
+        return BindingBuilder.bind(customerCreatedQueue)
+                .to(customerExchange)
                 .with(ROUTING_KEY_CUSTOMER_CREATED);
     }
 

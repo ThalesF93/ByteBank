@@ -15,8 +15,6 @@ public interface CustomerService {
 
     CustomerResponseDTO createCustomer(CustomerRequestDTO customerRequestDTO);
 
-    PendingAccountStatusResponse checkAccountStatus(UUID uuid);
-
     Page<CustomerShortResponseDTO> obterClientes(Pageable pageable);
 
     CustomerUpdateDTO updateCustomer(UUID id, CustomerUpdateDTO customerRequestDTO);

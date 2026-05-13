@@ -11,8 +11,8 @@ import br.com.bytebank.accounts.domain.exception.AccountNotFoundException;
 import br.com.bytebank.accounts.domain.exception.ClosingAccountException;
 import br.com.bytebank.accounts.domain.exception.CustomerNotFoundException;
 import br.com.bytebank.accounts.domain.exception.InsufficientBalanceException;
-import br.com.bytebank.accounts.infrastructure.feignclient.CustomerClient;
 import br.com.bytebank.accounts.api.dtos.client.response.CustomerClientResponseDTO;
+import br.com.bytebank.accounts.infrastructure.feignclient.CustomerClient;
 import br.com.bytebank.accounts.infrastructure.repositories.AccountRepository;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
@@ -33,9 +33,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
-    private final CustomerClient customerClient;
-
     private final AccountRepository accountRepository;
+    private final CustomerClient customerClient;
 
     @Transactional
     @Override

@@ -36,4 +36,12 @@ public class CustomerEventListener {
 
         eventPublisher.publishAccountOpened(event.customerId(), account.getId());
     }
+
+    @RabbitListener(queues = RabbitMQConfig.QUEUE_CUSTOMER_CREATED_DLQ)
+    public void onCustomerCreatedFailed(CustomerCreatedEvent event) {
+        log.error("FAILED to open account after retries. customerId={}", event.customerId());
+
+        // publica evento de falha pro customer atualizar status pra FAILED
+        eventPublisher.publishAccountFailed(event.customerId());
+    }
 }
