@@ -1,4 +1,4 @@
-package br.com.bytebank.bytebanknotification.infrastructure.messaging;
+package br.com.bytebank.notification.infrastructure.messaging;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
