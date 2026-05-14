@@ -6,7 +6,6 @@ import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
 import br.com.bytebank.accounts.api.dtos.response.BalanceResponseDTO;
-import br.com.bytebank.accounts.application.impl.AccountServiceImpl;
 import br.com.bytebank.accounts.application.service.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
