@@ -3,6 +3,9 @@ package br.com.bytebank.accounts.service;
 import br.com.bytebank.accounts.api.dtos.request.AccountRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
 import br.com.bytebank.accounts.domain.entity.Account;
+import br.com.bytebank.accounts.domain.exception.AccountNotFoundException;
+import br.com.bytebank.accounts.domain.exception.ClosingAccountException;
+import br.com.bytebank.accounts.domain.exception.DuplicateAccountException;
 import br.com.bytebank.accounts.infrastructure.feignclient.CustomerClient;
 import br.com.bytebank.accounts.infrastructure.messaging.AccountEventPublisher;
 import br.com.bytebank.accounts.infrastructure.repositories.AccountRepository;
@@ -13,11 +16,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AccountServiceTest {
@@ -42,11 +50,99 @@ class AccountServiceTest {
 
         AccountResponseDTO result = accountService.openAccount(accountDTO);
 
-        Mockito.verify(accountRepository).save(Mockito.any(Account.class));
-        Mockito.verify(eventPublisher).publishAccountOpened(Mockito.eq(accountDTO.customerId()), Mockito.eq(result.accountId()));
+        verify(accountRepository).save(Mockito.any(Account.class));
+        verify(eventPublisher).publishAccountOpened(Mockito.eq(accountDTO.customerId()), Mockito.eq(result.accountId()));
 
-        Assertions.assertThat(result).isNotNull();
-        Assertions.assertThat(result.clientId()).isEqualTo(accountDTO.customerId());
+        assertThat(result).isNotNull();
+        assertThat(result.clientId()).isEqualTo(accountDTO.customerId());
     }
+
+    @Test
+    @DisplayName("Should return Duplicate Account Exception")
+    void mustThrowExceptionOnOpeningAccount(){
+        AccountRequestDTO accountDTO = new AccountRequestDTO(UUID.randomUUID());
+        Mockito.when(accountRepository.existsByCustomerId(accountDTO.customerId())).thenReturn(true);
+
+        assertThatExceptionOfType(DuplicateAccountException.class)
+                .isThrownBy(()-> accountService.openAccount(accountDTO));
+
+        verify(accountRepository, never()).save(any());
+    }
+
+    @Test
+    @DisplayName("Should find specific account when informing ID as a parameter")
+    void mustFindAccountById(){
+        UUID id = UUID.randomUUID();
+        Account account = new Account();
+        account.setId(id);
+        account.setActive(true);
+
+        when(accountRepository.findById(id)).thenReturn(Optional.of(account));
+        var result = accountService.findAccountById(id);
+
+        assertThat(result).isNotNull();
+        assertThat(account.getId()).isEqualTo(result.accountId());
+        verify(accountRepository).findById(id);
+    }
+
+    @Test
+    @DisplayName("Should return Account Not found Exception")
+    void mustThrowExceptionWhenFindingById(){
+        UUID id = UUID.randomUUID();
+        when(accountRepository.findById(id)).thenReturn(Optional.empty());
+        assertThatExceptionOfType(AccountNotFoundException.class)
+                .isThrownBy(()-> accountService.findAccountById(id));
+
+        verify(accountRepository).findById(id);
+    }
+
+    @Test
+    @DisplayName("Should inactivate account by method closeAccount")
+    void mustCloseAccount(){
+        UUID id = UUID.randomUUID();
+        Account account = new Account();
+        account.setId(id);
+        account.setActive(true);
+
+        when(accountRepository.findAccountByIdAndIsActiveTrue(id)).thenReturn(Optional.of(account));
+        accountService.closeAccount(id);
+
+        assertThat(account.isActive()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("Should throw Account not found exception by passing an inactive account")
+    void mustThrowExceptionOnFindingAccountByIdAndIsActive(){
+        Account account = new Account();
+        account.setActive(false);
+        account.setId(UUID.randomUUID());
+
+        when(accountRepository.findAccountByIdAndIsActiveTrue(account.getId())).thenReturn(Optional.empty());
+
+        assertThatExceptionOfType(AccountNotFoundException.class)
+                .isThrownBy(()-> accountService.closeAccount(account.getId()))
+                .withMessage("Account already inactive or do not exist");
+
+        verify(accountRepository, never()).save(any());
+    }
+
+
+    @Test
+    @DisplayName("Should throw Closing Account exception by passing an account with balance bigger tem 0")
+    void mustThrowExceptionWhenClosingAccountAndBalanceIsPositive(){
+        Account account = new Account();
+        account.setActive(false);
+        account.setId(UUID.randomUUID());
+        account.setBalance(new BigDecimal("10"));
+
+        when(accountRepository.findAccountByIdAndIsActiveTrue(account.getId())).thenReturn(Optional.of(account));
+
+        assertThatExceptionOfType(ClosingAccountException.class)
+                .isThrownBy(()-> accountService.closeAccount(account.getId()))
+                .withMessage("Cannot close account with balance bigger than 0");
+
+        verify(accountRepository, never()).save(any());
+    }
+
 
 }

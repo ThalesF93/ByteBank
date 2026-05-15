@@ -43,7 +43,7 @@ public class AccountController {
         return ResponseEntity.ok(account);
     }
 
-    @DeleteMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Void> closeAccount(@PathVariable UUID id){
         log.info("Request received. endpoint=Delete /accounts accountID={}", id);
         accountService.closeAccount(id);
