@@ -66,12 +66,14 @@ public class AccountServiceImpl implements AccountService {
     @Transactional
     @Override
     public void closeAccount(UUID id){
-        Account account = accountRepository.findById(id)
-                .orElseThrow(()-> new AccountNotFoundException("Account not found"));
+        Account account = accountRepository.findAccountByIdAndIsActiveTrue(id)
+                .orElseThrow(()-> new AccountNotFoundException("Account already inactive or do not exist"));
         if (account.getBalance().compareTo(BigDecimal.ZERO) > 0){
             throw new ClosingAccountException("Cannot close account with balance bigger than 0");
         }
-        accountRepository.deleteById(id);
+        account.setActive(false);
+        accountRepository.save(account);
+        //accountRepository.deleteById(id);
     }
 
     @Override

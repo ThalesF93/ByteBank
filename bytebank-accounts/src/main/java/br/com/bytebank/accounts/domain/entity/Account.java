@@ -38,6 +38,9 @@ public class Account {
     private String accountNumber;
 
     @Column
+    private boolean isActive;
+
+    @Column
     private BigDecimal balance = BigDecimal.ZERO;
 
     @Column
