@@ -1,10 +1,12 @@
 package br.com.bytebank.accounts.service;
 
+import br.com.bytebank.accounts.api.dtos.client.response.CustomerClientResponseDTO;
 import br.com.bytebank.accounts.api.dtos.request.AccountRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
 import br.com.bytebank.accounts.domain.entity.Account;
 import br.com.bytebank.accounts.domain.exception.AccountNotFoundException;
 import br.com.bytebank.accounts.domain.exception.ClosingAccountException;
+import br.com.bytebank.accounts.domain.exception.CustomerNotFoundException;
 import br.com.bytebank.accounts.domain.exception.DuplicateAccountException;
 import br.com.bytebank.accounts.infrastructure.feignclient.CustomerClient;
 import br.com.bytebank.accounts.infrastructure.messaging.AccountEventPublisher;
@@ -20,6 +22,8 @@ import org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.rmi.server.UID;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -144,5 +148,74 @@ class AccountServiceTest {
         verify(accountRepository, never()).save(any());
     }
 
+    @Test
+    @DisplayName("Should return a list with Accounts sorted by balance")
+    void mustFindAccountSortedByBalance(){
+
+        Account account = new Account();
+        when(accountRepository.findAll()).thenReturn(List.of(account));
+
+        List<AccountResponseDTO> result = accountService.showAccountsByBalance();
+        verify(accountRepository, times(1)).findAll();
+    }
+
+    @Test
+    @DisplayName("Should return a boolean if account exist by customer id")
+    void mustVerifyIfAccountExistsByCustomerId(){
+        UUID id = UUID.randomUUID();
+        when(accountRepository.existsByCustomerId(id)).thenReturn(true);
+
+        var result = accountService.existsByCustomer(id);
+
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("Should find a customer by passing the account id as a parameter")
+    void mustFindCustomerPassingAccountId(){
+        UUID id = UUID.randomUUID();
+        Account account = new Account();
+        account.setId(id);
+
+        CustomerClientResponseDTO customer = new CustomerClientResponseDTO(UUID.randomUUID(), "any", "any@email.com");
+
+        when(accountRepository.findById(id)).thenReturn(Optional.of(account));
+        when(customerClient.findCustomerById(account.getCustomerId())).thenReturn(customer);
+
+        var result = accountService.findCustomerByAccountId(id);
+
+        assertThat(result.name()).isEqualTo("any");
+    }
+
+    @Test
+    @DisplayName("Should throw Account not found exception when passing nonexisting id")
+    void mustThrowExceptionWhenFindCustomerByAccountId(){
+        UUID id = UUID.randomUUID();
+
+        when(accountRepository.findById(id)).thenReturn(Optional.empty());
+
+        assertThatExceptionOfType(AccountNotFoundException.class)
+                .isThrownBy(()-> accountService.findCustomerByAccountId(id))
+                .withMessage("Account not found");
+
+        verify(customerClient, never()).findCustomerById(UUID.randomUUID());
+    }
+
+    @Test
+    @DisplayName("Should throw Customer not found exception when passing nonexisting customer id")
+    void mustThrowExceptionWhenCustomerClientDoesntFind(){
+        UUID id = UUID.randomUUID();
+        Account account = new Account();
+        account.setId(id);
+        account.setCustomerId(null);
+
+        when(accountRepository.findById(id)).thenReturn(Optional.of(account));
+        when(customerClient.findCustomerById(account.getCustomerId())).thenThrow(new CustomerNotFoundException("Customer not found id= " + account.getCustomerId()));
+
+
+        assertThatExceptionOfType(CustomerNotFoundException.class)
+                .isThrownBy(()-> accountService.findCustomerByAccountId(id))
+                        .withMessage("Customer not found id= " + account.getCustomerId());
+    }
 
 }
