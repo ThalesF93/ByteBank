@@ -86,10 +86,11 @@ public class AccountServiceImpl implements AccountService {
                 .collect(Collectors.toList());
     }
 
-    private Account getAccount(UUID accountId) {
-        return accountRepository.findById(accountId)
-                .orElseThrow(() -> new AccountNotFoundException("Account not found"));
+    @Override
+    public boolean existsByCustomer(UUID id){
+        return accountRepository.existsByCustomerId(id);
     }
+
 
     @Override
     public CustomerClientResponseDTO findCustomerByAccountId(UUID id){
@@ -163,10 +164,11 @@ public class AccountServiceImpl implements AccountService {
         return account.getBalance().compareTo(amount) < 0;
     }
 
-    @Override
-    public boolean existsByCustomer(UUID id){
-        return accountRepository.existsByCustomerId(id);
+    private Account getAccount(UUID accountId) {
+        return accountRepository.findById(accountId)
+                .orElseThrow(() -> new AccountNotFoundException("Account not found"));
     }
+
 
 
 
