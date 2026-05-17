@@ -2,33 +2,30 @@ package br.com.bytebank.accounts.service;
 
 import br.com.bytebank.accounts.api.dtos.client.response.CustomerClientResponseDTO;
 import br.com.bytebank.accounts.api.dtos.request.AccountRequestDTO;
+import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
+import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
+import br.com.bytebank.accounts.application.impl.AccountServiceImpl;
 import br.com.bytebank.accounts.domain.entity.Account;
-import br.com.bytebank.accounts.domain.exception.AccountNotFoundException;
-import br.com.bytebank.accounts.domain.exception.ClosingAccountException;
-import br.com.bytebank.accounts.domain.exception.CustomerNotFoundException;
-import br.com.bytebank.accounts.domain.exception.DuplicateAccountException;
+import br.com.bytebank.accounts.domain.exception.*;
 import br.com.bytebank.accounts.infrastructure.feignclient.CustomerClient;
 import br.com.bytebank.accounts.infrastructure.messaging.AccountEventPublisher;
 import br.com.bytebank.accounts.infrastructure.repositories.AccountRepository;
-import org.assertj.core.api.Assertions;
+import feign.FeignException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.rmi.server.UID;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -216,6 +213,93 @@ class AccountServiceTest {
         assertThatExceptionOfType(CustomerNotFoundException.class)
                 .isThrownBy(()-> accountService.findCustomerByAccountId(id))
                         .withMessage("Customer not found id= " + account.getCustomerId());
+    }
+
+    @Test
+    @DisplayName("Should add an amount into an account")
+    void mustDebitAnAccountSuccessfully(){
+        UUID id = UUID.randomUUID();
+        BigDecimal amount = new BigDecimal("10");
+
+        Account account = new Account();
+        account.setId(id);
+        account.setBalance(amount);
+        WithdrawRequestDTO withdraw = new WithdrawRequestDTO(id, amount);
+
+        when(accountRepository.findById(id)).thenReturn(Optional.of(account));
+
+        accountService.debit(withdraw);
+
+        verify(accountRepository).save(account);
+    }
+
+    @Test
+    @DisplayName("Should throw exception when trying withdraw more than balance")
+    void mustThrowExceptionWhenAmountInsufficientForDebit(){
+        UUID id = UUID.randomUUID();
+        BigDecimal amount = new BigDecimal("10");
+
+        Account account = new Account();
+        account.setId(id);
+        account.setBalance(amount);
+        WithdrawRequestDTO withdraw = new WithdrawRequestDTO(id, new BigDecimal("20"));
+
+        when(accountRepository.findById(id)).thenReturn(Optional.of(account));
+        assertThatExceptionOfType(InsufficientBalanceException.class)
+                .isThrownBy(()-> accountService.debit(withdraw))
+                .withMessage("Unauthorized operation! Withdraw must not be more than balance");
+
+        verify(accountRepository, never()).save(account);
+    }
+
+    @Test
+    @DisplayName("Should return a list of all accounts from specific customer")
+    void mustListAccountsByCustomerId(){
+        UUID id = UUID.randomUUID();
+        CustomerClientResponseDTO client = new CustomerClientResponseDTO(id, "any", "test@email.com");
+        when(customerClient.findCustomerById(id)).thenReturn(client);
+
+        var result = accountService.listAccountByCostumer(id);
+
+        assertThat(result).isNotNull();
+    }
+
+    @Test
+    @DisplayName("Should Throw Customer not found exception when calling method 'lisAccountByCustomer'")
+    void mustThrowExceptionWhenCustomerNotFoundOn(){
+        UUID id = UUID.randomUUID();
+
+        when(customerClient.findCustomerById(id)).thenThrow(FeignException.NotFound.class);
+
+        assertThatExceptionOfType(CustomerNotFoundException.class)
+                .isThrownBy(() -> accountService.listAccountByCostumer(id))
+                .withMessage("Customer not found with id: " + id);
+    }
+
+    @Test
+    @DisplayName("Should find and return account balance")
+    void mustReturnAccountBalance(){
+        UUID id = UUID.randomUUID();
+        Account account = new Account();
+        account.setId(id);
+        account.setBalance(new BigDecimal("100"));
+
+        when(accountRepository.findById(id)).thenReturn(Optional.of(account));
+        var result = accountService.getBalance(id);
+
+        assertThat(result.amount()).isEqualTo(account.getBalance());
+    }
+
+    @Test
+    @DisplayName("Should throw Account not found exception")
+    void mustThrowExceptionOnMethodGetBalance(){
+        UUID id = UUID.randomUUID();
+
+        when(accountRepository.findById(id)).thenReturn(Optional.empty());
+
+        assertThatExceptionOfType(AccountNotFoundException.class)
+                .isThrownBy(()-> accountService.getBalance(id))
+                .withMessage("Account not found");
     }
 
 }
