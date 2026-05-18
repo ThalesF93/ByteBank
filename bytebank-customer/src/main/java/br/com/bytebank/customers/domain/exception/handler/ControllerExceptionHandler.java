@@ -1,7 +1,7 @@
 package br.com.bytebank.customers.domain.exception.handler;
 
 
-import br.com.bytebank.customers.domain.exception.ClienteJaExistenteException;
+import br.com.bytebank.customers.domain.exception.DuplicateCustomerException;
 import br.com.bytebank.customers.domain.exception.ResourceNotFoundException;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
@@ -31,8 +31,8 @@ public class ControllerExceptionHandler {
         return ProblemDetail.forStatusAndDetail(status, exception.getMessage());
     }
 
-    @ExceptionHandler(ClienteJaExistenteException.class)
-    public ProblemDetail conflict(final ClienteJaExistenteException exception){
+    @ExceptionHandler(DuplicateCustomerException.class)
+    public ProblemDetail conflict(final DuplicateCustomerException exception){
         
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
             HttpStatus.CONFLICT, 

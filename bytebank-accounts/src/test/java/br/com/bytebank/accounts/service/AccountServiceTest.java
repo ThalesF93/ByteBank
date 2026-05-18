@@ -2,7 +2,6 @@ package br.com.bytebank.accounts.service;
 
 import br.com.bytebank.accounts.api.dtos.client.response.CustomerClientResponseDTO;
 import br.com.bytebank.accounts.api.dtos.request.AccountRequestDTO;
-import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
 import br.com.bytebank.accounts.application.impl.AccountServiceImpl;
@@ -25,7 +24,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

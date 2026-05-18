@@ -9,8 +9,8 @@ import br.com.bytebank.customers.application.service.CustomerService;
 import br.com.bytebank.customers.domain.entity.Customer;
 import br.com.bytebank.customers.domain.enums.AccountStatus;
 import br.com.bytebank.customers.domain.enums.CustomerStatus;
-import br.com.bytebank.customers.domain.exception.ClienteJaExistenteException;
 import br.com.bytebank.customers.domain.exception.CustomerNotFoundException;
+import br.com.bytebank.customers.domain.exception.DuplicateCustomerException;
 import br.com.bytebank.customers.infrastructure.messaging.CustomerEventPublisher;
 import br.com.bytebank.customers.infrastructure.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public Page<CustomerShortResponseDTO> obterClientes(Pageable pageable){
+    public Page<CustomerShortResponseDTO> getCustomers(Pageable pageable){
         return repository.findAll(pageable)
                 .map(converteParaClienteResumoResponseDTO());
     }
@@ -92,7 +92,7 @@ public class CustomerServiceImpl implements CustomerService {
         final var cpf = dto.cpf();
 
         if (repository.existsByCpf(cpf)){
-            throw new ClienteJaExistenteException("Customer with cpf " + cpf + " already exists");
+            throw new DuplicateCustomerException("Customer with cpf " + cpf + " already exists");
         }
     }
 

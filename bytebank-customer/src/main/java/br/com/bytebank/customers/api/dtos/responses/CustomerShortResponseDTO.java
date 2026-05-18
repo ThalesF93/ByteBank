@@ -11,7 +11,7 @@ public record CustomerShortResponseDTO(
 
         UUID id,
 
-        String nome,
+        String name,
 
         CustomerStatus CustomerStatus
 
