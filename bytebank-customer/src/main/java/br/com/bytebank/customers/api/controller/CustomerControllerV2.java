@@ -42,7 +42,7 @@ public class CustomerControllerV2 {
         log.info("Obtaining costumers in database");
         var pageable = PageRequest.of(page, size);
 
-        var costumerPage = service.obterClientes(pageable);
+        var costumerPage = service.getCustomers(pageable);
 
         return new PagedResponse<>(costumerPage);
     }
