@@ -6,6 +6,7 @@ import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
 import br.com.bytebank.accounts.api.dtos.response.BalanceResponseDTO;
+import br.com.bytebank.accounts.api.openapi.controller.AccountControllerOpenApi;
 import br.com.bytebank.accounts.application.service.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.UUID;
 @RequestMapping("api/v1/accounts")
 @RequiredArgsConstructor
 @Slf4j
-public class AccountController {
+public class AccountController implements AccountControllerOpenApi {
 
 
     private final AccountService accountService;
