@@ -27,7 +27,7 @@ public class AccountController implements AccountControllerOpenApi {
 
     private final AccountService accountService;
 
-
+    @Override
     @PostMapping
     public ResponseEntity<AccountResponseDTO> openAccount(@Valid @RequestBody AccountRequestDTO accountRequestDTO){
         log.info("Request received. endpoint=POST /accounts customerID={}", accountRequestDTO.customerId());

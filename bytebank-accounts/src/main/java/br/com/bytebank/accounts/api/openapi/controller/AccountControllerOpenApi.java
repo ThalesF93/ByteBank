@@ -6,6 +6,8 @@ import br.com.bytebank.accounts.api.dtos.request.DepositRequestDTO;
 import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
 import br.com.bytebank.accounts.api.dtos.response.BalanceResponseDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,14 @@ import java.util.UUID;
 @Tag(name = "Accounts")
 public interface AccountControllerOpenApi {
 
+    @Operation(summary = "Open Account",
+    responses = {
+            @ApiResponse(responseCode = "201", description = "Account created Successfully"),
+            @ApiResponse(responseCode = "")
+    })
     ResponseEntity<AccountResponseDTO> openAccount(@Valid @RequestBody AccountRequestDTO accountRequestDTO);
+
+
 
     ResponseEntity<AccountResponseDTO> findAccount(@PathVariable UUID id);
 

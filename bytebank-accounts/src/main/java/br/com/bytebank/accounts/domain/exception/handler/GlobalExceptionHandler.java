@@ -1,115 +1,49 @@
 package br.com.bytebank.accounts.domain.exception.handler;
 
-import br.com.bytebank.accounts.domain.exception.*;
+import br.com.bytebank.accounts.domain.exception.default_exception.DefaultException;
+import br.com.bytebank.accounts.domain.exception.dto.ErrorResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ProblemDetail;
-import org.springframework.validation.FieldError;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
-public class ExceptionHandler {
+public class GlobalExceptionHandler {
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(MethodArgumentNotValidException.class)
-    public ProblemDetail handleValidation(final MethodArgumentNotValidException exception){
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-        Map<String, String> validationErrors = buildValidationErrorResponse(exception);
-
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
-                HttpStatus.BAD_REQUEST,
-                "Validation error"
-        );
-
-        problemDetail.setTitle("Invalid data");
-        problemDetail.setProperty("errors", validationErrors);
-        problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/validation"));
-
-        return problemDetail;
+    @ExceptionHandler(DefaultException.class)
+    public ResponseEntity<ErrorResponse> handleDefaultException(DefaultException e, HttpServletRequest request){
+        log.warn("Error: {} - {}", e.getCode(), e.getMessage());
+        return ResponseEntity
+                .status(e.getStatus())
+                .body(ErrorResponse.of(e.getCode(), e.getMessage(), e.getStatus().value(), request.getRequestURI()));
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(AccountNotFoundException.class)
-    public ProblemDetail handleAccountNotFound(final Throwable exception){
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
+        String message = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(e -> e.getField() + ": " + e.getDefaultMessage())
+                .collect(Collectors.joining(", "));
 
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
-                HttpStatus.NOT_FOUND,
-                exception.getMessage()
-        );
-
-        problemDetail.setTitle("Account not found");
-        problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/not_found"));
-
-        return problemDetail;
-    }
-    @org.springframework.web.bind.annotation.ExceptionHandler(CustomerNotFoundException.class)
-    public ProblemDetail handleCustomerNotFound(final Throwable exception){
-
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
-                HttpStatus.NOT_FOUND,
-                exception.getMessage()
-        );
-
-        problemDetail.setTitle("Customer not found");
-        problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/not_found"));
-
-        return problemDetail;
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(ErrorResponse.of("VALIDATION_ERROR", message, 400, request.getRequestURI()));
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(SameAccountException.class)
-    public ProblemDetail handleSameAccount(final Throwable exception){
-
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
-                HttpStatus.CONFLICT,
-                exception.getMessage()
-        );
-
-        problemDetail.setTitle("The accounts must be different");
-        problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/conflict"));
-
-        return problemDetail;
-    }
-
-    private static Map<String, String> buildValidationErrorResponse(MethodArgumentNotValidException exception) {
-        Map<String, String> validationErrors = new HashMap<>();
-
-        exception.getBindingResult()
-                .getAllErrors()
-                .forEach(error -> {
-                    String fieldName = ((FieldError) error).getField();
-                    String errorMessage = error.getDefaultMessage();
-                    validationErrors.put(fieldName, errorMessage);
-                });
-        return validationErrors;
-    }
-
-    @org.springframework.web.bind.annotation.ExceptionHandler(ServiceUnavailableException.class)
-    public ProblemDetail handleServiceUnavailableException(final Throwable exception){
-
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
-                HttpStatus.SERVICE_UNAVAILABLE,
-                exception.getMessage()
-        );
-
-        problemDetail.setTitle("Customer service unavailable");
-        problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/conflict"));
-
-        return problemDetail;
-    }
-
-    @org.springframework.web.bind.annotation.ExceptionHandler(InsufficientBalanceException.class)
-    public ProblemDetail handleInsufficientBalance(final Throwable exception){
-
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
-                HttpStatus.CONFLICT,
-                exception.getMessage()
-        );
-
-        problemDetail.setTitle("Insufficient Balance for operation");
-        problemDetail.setType(URI.create("https://api.coderbank.com.br/errors/conflict"));
-
-        return problemDetail;
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGeneric(Exception ex, HttpServletRequest request) {
+        log.error("Unexpected error", ex);
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ErrorResponse.of("INTERNAL_ERROR", "Ocorreu um erro inesperado", 500, request.getRequestURI()));
     }
 }

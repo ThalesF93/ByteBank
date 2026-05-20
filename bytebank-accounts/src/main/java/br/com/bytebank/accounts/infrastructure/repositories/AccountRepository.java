@@ -13,6 +13,8 @@ public interface AccountRepository extends JpaRepository<Account, UUID> {
 
     boolean existsByCustomerId(UUID id);
 
+    boolean existsByAccountNumber(String accountNumber);
+
     Optional<Account> findAccountByIdAndIsActiveTrue(UUID id);
 
 }
