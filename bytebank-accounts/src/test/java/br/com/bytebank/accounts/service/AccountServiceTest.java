@@ -6,7 +6,7 @@ import br.com.bytebank.accounts.api.dtos.request.WithdrawRequestDTO;
 import br.com.bytebank.accounts.api.dtos.response.AccountResponseDTO;
 import br.com.bytebank.accounts.application.impl.AccountServiceImpl;
 import br.com.bytebank.accounts.domain.entity.Account;
-import br.com.bytebank.accounts.domain.exception.*;
+import br.com.bytebank.accounts.domain.exception.customized_excpetions.*;
 import br.com.bytebank.accounts.infrastructure.feignclient.CustomerClient;
 import br.com.bytebank.accounts.infrastructure.messaging.AccountEventPublisher;
 import br.com.bytebank.accounts.infrastructure.repositories.AccountRepository;
@@ -207,7 +207,7 @@ class AccountServiceTest {
         account.setCustomerId(null);
 
         when(accountRepository.findById(id)).thenReturn(Optional.of(account));
-        when(customerClient.findCustomerById(account.getCustomerId())).thenThrow(new CustomerNotFoundException("Customer not found id= " + account.getCustomerId()));
+        when(customerClient.findCustomerById(account.getCustomerId())).thenThrow(new CustomerNotFoundException(account.getCustomerId()));
 
 
         assertThatExceptionOfType(CustomerNotFoundException.class)
