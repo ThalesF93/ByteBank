@@ -86,7 +86,7 @@ public class ExceptionHandler {
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(ServiceUnavailableException.class)
-    public ProblemDetail handleSeviceUnavailableException(final Throwable exception){
+    public ProblemDetail handleServiceUnavailableException(final Throwable exception){
 
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
                 HttpStatus.SERVICE_UNAVAILABLE,
