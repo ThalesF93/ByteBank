@@ -79,4 +79,10 @@ public class AccountController implements AccountControllerOpenApi {
         return ResponseEntity.ok(accountService.findCustomerByAccountId(id));
     }
 
+    @GetMapping("/listAll")
+    @Override
+    public ResponseEntity<List<AccountResponseDTO>> listAllAccountsByBalance(){
+        return ResponseEntity.ok(accountService.showAccountsByBalance());
+    }
+
 }

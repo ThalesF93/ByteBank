@@ -33,4 +33,6 @@ public interface AccountService {
     boolean existsByCustomer(UUID id);
 
     CustomerClientResponseDTO findCustomerByAccountId(UUID id);
+
+
 }
